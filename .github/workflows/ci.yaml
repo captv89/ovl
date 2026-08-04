@@ -34,8 +34,8 @@ jobs:
             echo "$fmt_out"
             exit 1
           fi
-      - name: test (race-enabled, CGO off)
-        run: CGO_ENABLED=0 go test ./... -race
+      - name: test (race-enabled)
+        run: go test ./... -race
       - uses: golangci/golangci-lint-action@v6
         with:
           version: v2.12
