@@ -1,0 +1,95 @@
+/* =========================================================================
+   Tideline — Typography Tokens
+   Display/Headline/Title = Plus Jakarta Sans (distinctive, geometric — brand voice)
+   Body/Label = Roboto (dense, highly legible at small sizes — instrument readouts,
+   data tables, long-form bridge/console text)
+   Scale follows Material 3's type scale (Display/Headline/Title/Body/Label × L/M/S).
+   ========================================================================= */
+
+:root {
+  --font-brand: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Roboto", system-ui, sans-serif;
+  --font-mono: "Roboto Mono", "SFMono-Regular", Consolas, monospace;
+
+  /* Display — hero numerals, splash headers */
+  --type-display-large-size: 57px;
+  --type-display-large-line: 64px;
+  --type-display-large-weight: 600;
+  --type-display-large-tracking: -0.25px;
+
+  --type-display-medium-size: 45px;
+  --type-display-medium-line: 52px;
+  --type-display-medium-weight: 600;
+
+  --type-display-small-size: 36px;
+  --type-display-small-line: 44px;
+  --type-display-small-weight: 600;
+
+  /* Headline — screen/section titles */
+  --type-headline-large-size: 32px;
+  --type-headline-large-line: 40px;
+  --type-headline-large-weight: 600;
+
+  --type-headline-medium-size: 28px;
+  --type-headline-medium-line: 36px;
+  --type-headline-medium-weight: 600;
+
+  --type-headline-small-size: 24px;
+  --type-headline-small-line: 32px;
+  --type-headline-small-weight: 600;
+
+  /* Title — card headers, dialogs, list section titles */
+  --type-title-large-size: 22px;
+  --type-title-large-line: 28px;
+  --type-title-large-weight: 500;
+
+  --type-title-medium-size: 16px;
+  --type-title-medium-line: 24px;
+  --type-title-medium-weight: 600;
+  --type-title-medium-tracking: 0.15px;
+
+  --type-title-small-size: 14px;
+  --type-title-small-line: 20px;
+  --type-title-small-weight: 600;
+  --type-title-small-tracking: 0.1px;
+
+  /* Body — running text, descriptions */
+  --type-body-large-size: 16px;
+  --type-body-large-line: 24px;
+  --type-body-large-weight: 400;
+  --type-body-large-tracking: 0.15px;
+
+  --type-body-medium-size: 14px;
+  --type-body-medium-line: 20px;
+  --type-body-medium-weight: 400;
+  --type-body-medium-tracking: 0.25px;
+
+  --type-body-small-size: 12px;
+  --type-body-small-line: 16px;
+  --type-body-small-weight: 400;
+  --type-body-small-tracking: 0.4px;
+
+  /* Label — buttons, chips, form labels */
+  --type-label-large-size: 14px;
+  --type-label-large-line: 20px;
+  --type-label-large-weight: 600;
+  --type-label-large-tracking: 0.1px;
+
+  --type-label-medium-size: 12px;
+  --type-label-medium-line: 16px;
+  --type-label-medium-weight: 600;
+  --type-label-medium-tracking: 0.5px;
+
+  --type-label-small-size: 11px;
+  --type-label-small-line: 16px;
+  --type-label-small-weight: 600;
+  --type-label-small-tracking: 0.5px;
+
+  /* Instrument readouts (speed/heading/depth) — mono, tabular */
+  --type-readout-large-size: 40px;
+  --type-readout-large-line: 44px;
+  --type-readout-large-weight: 500;
+  --type-readout-medium-size: 22px;
+  --type-readout-medium-line: 26px;
+  --type-readout-medium-weight: 500;
+}

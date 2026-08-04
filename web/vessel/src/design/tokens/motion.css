@@ -1,0 +1,64 @@
+/*
+ * Tideline — motion tokens and the "field attention" pulse.
+ *
+ * The pulse is a transient, non-semantic highlight: it draws the eye to an
+ * element a user just navigated to (e.g. tapping a health-check issue),
+ * without reading as an error/warning state itself. Deliberately uses the
+ * tertiary (Brass) color slot, which no validation severity already owns
+ * (error = --color-error, warning = --color-status-caution), so it can
+ * never be mistaken for new validation feedback.
+ */
+
+:root {
+  --motion-duration-highlight: 1400ms;
+}
+
+.field-highlight-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 2px var(--color-tertiary);
+  background: var(--color-tertiary-container);
+  animation: field-highlight-fade var(--motion-duration-highlight) ease-out forwards;
+}
+
+@keyframes field-highlight-fade {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field-highlight-pulse {
+    animation: none;
+    opacity: 0.35;
+  }
+}
+
+/*
+ * WaveBackdrop — a slow drifting wave-line motif for full-bleed decorative
+ * backgrounds (currently: the login screen). Pure CSS background-position
+ * scroll over a tiled SVG data-URI, not JS/canvas/WebGL — a handful of
+ * repainted pixels per frame regardless of viewport size, so it stays cheap
+ * on a bridge workstation that may be years old. Static (no animation) by
+ * default; only opts into motion when the OS hasn't asked for reduced
+ * motion, per the rest of this file's own convention.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .wave-backdrop-layer {
+    animation: wave-drift var(--wave-duration, 40s) linear infinite;
+  }
+}
+
+@keyframes wave-drift {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -400px;
+  }
+}

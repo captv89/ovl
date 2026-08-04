@@ -1,0 +1,105 @@
+{
+  "schemaName": "commercial-period",
+  "ovdVersion": "3.13",
+  "version": "3.13",
+  "sections": [
+    "details"
+  ],
+  "fields": [
+    {
+      "name": "IMO",
+      "label": "Vessel",
+      "type": "wholeNumber",
+      "unit": null,
+      "maxLength": 7,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "recommended for voyage level verfication schemes",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "IMO number"
+    },
+    {
+      "name": "Period_Id",
+      "label": "Period identifier",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "recommended for voyage level verfication schemes",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "Unique identifier - required to identify the parameters of a commercial period."
+    },
+    {
+      "name": "Exclude_From_Period",
+      "label": "Period identifier of the parent period",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "recommended for voyage level verfication schemes",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "For exclusion periods within commercial periods the identifier of that commercial period."
+    },
+    {
+      "name": "Period_Start",
+      "label": "Period start",
+      "type": "dateTime",
+      "unit": null,
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "recommended for voyage level verfication schemes",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "Start time of the commercial period (UTC) - excluding."
+    },
+    {
+      "name": "Period_End",
+      "label": "Period end",
+      "type": "dateTime",
+      "unit": null,
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "recommended for voyage level verfication schemes",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "End time of the commercial period (UTC) - including"
+    },
+    {
+      "name": "Description",
+      "label": "Description of the commercial period",
+      "type": "text",
+      "unit": null,
+      "maxLength": 100,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "recommended for voyage level verfication schemes",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ]
+    }
+  ]
+}

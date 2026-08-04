@@ -1,0 +1,172 @@
+{
+  "enumName": "offshore-modes",
+  "ovdVersion": "3.13",
+  "modes": [
+    {
+      "highLevelMode": "InPort",
+      "reportingMode": "InPortEnginesOff"
+    },
+    {
+      "highLevelMode": "InPort",
+      "reportingMode": "InPortShorePower"
+    },
+    {
+      "highLevelMode": "InPort",
+      "reportingMode": "InPortEnginesOn"
+    },
+    {
+      "highLevelMode": "OnSite",
+      "reportingMode": "OnSite"
+    },
+    {
+      "highLevelMode": "DPMode",
+      "reportingMode": "OnSiteDP"
+    },
+    {
+      "highLevelMode": "DPMode",
+      "reportingMode": "StandbyDP"
+    },
+    {
+      "highLevelMode": "Standby",
+      "reportingMode": "StandbyDrifting"
+    },
+    {
+      "highLevelMode": "Standby",
+      "reportingMode": "StandbyAtAnchor"
+    },
+    {
+      "highLevelMode": "Transit",
+      "reportingMode": "TransitNormal"
+    },
+    {
+      "highLevelMode": "Transit",
+      "reportingMode": "TransitEco"
+    },
+    {
+      "highLevelMode": "Transit",
+      "reportingMode": "TransitMax"
+    },
+    {
+      "highLevelMode": "Transit",
+      "reportingMode": "TransitOther"
+    }
+  ],
+  "activities": [
+    {
+      "activityGroup": "General",
+      "reportingActivity": "ManoeuvringAndShifting"
+    },
+    {
+      "activityGroup": "General",
+      "reportingActivity": "AtAnchor"
+    },
+    {
+      "activityGroup": "General",
+      "reportingActivity": "IdleLayUp"
+    },
+    {
+      "activityGroup": "General",
+      "reportingActivity": "Drydock"
+    },
+    {
+      "activityGroup": "General",
+      "reportingActivity": "Breakdown"
+    },
+    {
+      "activityGroup": "General",
+      "reportingActivity": "Bunkering"
+    },
+    {
+      "activityGroup": "General",
+      "reportingActivity": "Alongside"
+    },
+    {
+      "activityGroup": "General",
+      "reportingActivity": "MobDemob"
+    },
+    {
+      "activityGroup": "General",
+      "reportingActivity": "Waiting"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "ERRVStandbyOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "SubseaOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "DivingOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "PassengerOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "MedivacOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "AnchorHandlingOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "ROVOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "CargoOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "SeismicOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "MaintenanceRepairOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "OtherOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "LiftingOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "TowingOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "PipelayOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "TrenchingOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "SurveyOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "JackingOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "InstallationOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "WindTurbineOps"
+    },
+    {
+      "activityGroup": "Ship specific",
+      "reportingActivity": "CableOps"
+    }
+  ]
+}

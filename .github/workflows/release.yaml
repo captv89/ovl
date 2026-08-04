@@ -1,0 +1,58 @@
+# Release pipeline (Phase 7). Runs GoReleaser against .goreleaser.yaml on
+# a version tag push — cross-compiles ovl-vessel for the release matrix,
+# builds and pushes the multi-arch ovl-office image to ghcr.io, and
+# cosign-signs the checksum file (keyless, via this workflow's own OIDC
+# token — see .goreleaser.yaml's `signs` block for why keyless over a
+# long-lived key). Inert until this repo has a remote and a tag is
+# actually pushed, same as ci.yaml before it — see PROJECT.md's Phase 1
+# decisions log.
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write # create the GitHub Release and upload artifacts
+  packages: write # push the ovl-office image to ghcr.io
+  id-token: write # cosign keyless signing (sigstore OIDC)
+
+jobs:
+  goreleaser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # goreleaser needs full history for changelog generation
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: build both SPAs (embedded into their Go binaries)
+        run: make web-install web-build
+
+      - uses: sigstore/cosign-installer@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/setup-qemu-action@v3 # cross-arch emulation for the office image's linux/arm64 build
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: "~> 2"
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

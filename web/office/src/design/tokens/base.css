@@ -1,0 +1,51 @@
+/* =========================================================================
+   Tideline — Base resets & utility classes shared across cards/components
+   ========================================================================= */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-background);
+  color: var(--color-on-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+.md-display-large { font-family: var(--font-brand); font-size: var(--type-display-large-size); line-height: var(--type-display-large-line); font-weight: var(--type-display-large-weight); letter-spacing: var(--type-display-large-tracking); margin: 0; }
+.md-display-medium { font-family: var(--font-brand); font-size: var(--type-display-medium-size); line-height: var(--type-display-medium-line); font-weight: var(--type-display-medium-weight); margin: 0; }
+.md-display-small { font-family: var(--font-brand); font-size: var(--type-display-small-size); line-height: var(--type-display-small-line); font-weight: var(--type-display-small-weight); margin: 0; }
+.md-headline-large { font-family: var(--font-brand); font-size: var(--type-headline-large-size); line-height: var(--type-headline-large-line); font-weight: var(--type-headline-large-weight); margin: 0; }
+.md-headline-medium { font-family: var(--font-brand); font-size: var(--type-headline-medium-size); line-height: var(--type-headline-medium-line); font-weight: var(--type-headline-medium-weight); margin: 0; }
+.md-headline-small { font-family: var(--font-brand); font-size: var(--type-headline-small-size); line-height: var(--type-headline-small-line); font-weight: var(--type-headline-small-weight); margin: 0; }
+.md-title-large { font-family: var(--font-brand); font-size: var(--type-title-large-size); line-height: var(--type-title-large-line); font-weight: var(--type-title-large-weight); margin: 0; }
+.md-title-medium { font-family: var(--font-body); font-size: var(--type-title-medium-size); line-height: var(--type-title-medium-line); font-weight: var(--type-title-medium-weight); letter-spacing: var(--type-title-medium-tracking); margin: 0; }
+.md-title-small { font-family: var(--font-body); font-size: var(--type-title-small-size); line-height: var(--type-title-small-line); font-weight: var(--type-title-small-weight); letter-spacing: var(--type-title-small-tracking); margin: 0; }
+.md-body-large { font-family: var(--font-body); font-size: var(--type-body-large-size); line-height: var(--type-body-large-line); font-weight: var(--type-body-large-weight); letter-spacing: var(--type-body-large-tracking); margin: 0; }
+.md-body-medium { font-family: var(--font-body); font-size: var(--type-body-medium-size); line-height: var(--type-body-medium-line); font-weight: var(--type-body-medium-weight); letter-spacing: var(--type-body-medium-tracking); margin: 0; }
+.md-body-small { font-family: var(--font-body); font-size: var(--type-body-small-size); line-height: var(--type-body-small-line); font-weight: var(--type-body-small-weight); letter-spacing: var(--type-body-small-tracking); margin: 0; }
+.md-label-large { font-family: var(--font-body); font-size: var(--type-label-large-size); line-height: var(--type-label-large-line); font-weight: var(--type-label-large-weight); letter-spacing: var(--type-label-large-tracking); margin: 0; }
+.md-label-medium { font-family: var(--font-body); font-size: var(--type-label-medium-size); line-height: var(--type-label-medium-line); font-weight: var(--type-label-medium-weight); letter-spacing: var(--type-label-medium-tracking); margin: 0; }
+.md-label-small { font-family: var(--font-body); font-size: var(--type-label-small-size); line-height: var(--type-label-small-line); font-weight: var(--type-label-small-weight); letter-spacing: var(--type-label-small-tracking); margin: 0; }
+.md-readout-large { font-family: var(--font-mono); font-size: var(--type-readout-large-size); line-height: var(--type-readout-large-line); font-weight: var(--type-readout-large-weight); font-variant-numeric: tabular-nums; margin: 0; }
+.md-readout-medium { font-family: var(--font-mono); font-size: var(--type-readout-medium-size); line-height: var(--type-readout-medium-line); font-weight: var(--type-readout-medium-weight); font-variant-numeric: tabular-nums; margin: 0; }
+
+.material-symbols-rounded {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  vertical-align: middle;
+}
+
+/* Material 3 numeric text fields don't show native up/down spinner
+   arrows — the OVD schemas are almost entirely numeric *readings*
+   (IMO number, tank soundings, emissions figures, ...), not counters a
+   user increments by clicking, and the native spinner's scroll-to-
+   increment behavior is an active data-entry hazard on a page with
+   hundreds of adjacent number fields. type="number" is kept (for the
+   numeric-keypad/validation win) with only the chrome suppressed. */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

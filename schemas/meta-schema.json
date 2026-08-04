@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/captv89/ovl/schemas/meta-schema.json",
+  "title": "OVL curated schema meta-schema",
+  "description": "Validates an OVD schema JSON document (Log Abstract, Bunker Report, EDN Report, Commercial Period, Cargo Nomination). See handoff/OVL_Architecture_Handoff.md section 5.",
+  "type": "object",
+  "required": ["schemaName", "ovdVersion", "version", "fields"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaName": {
+      "type": "string",
+      "enum": [
+        "log-abstract",
+        "bunker-report",
+        "edn-report",
+        "commercial-period",
+        "cargo-nomination"
+      ]
+    },
+    "ovdVersion": {
+      "type": "string",
+      "description": "The DNV OVD spec version this schema was curated from, e.g. \"3.13\"."
+    },
+    "version": {
+      "type": "string",
+      "description": "Immutable published version string of this schema document, e.g. \"3.13\" or \"3.13-company-r2\"."
+    },
+    "sections": {
+      "type": "array",
+      "description": "Ordered section identifiers used by fields[].section, driving form grouping.",
+      "items": { "type": "string" }
+    },
+    "fields": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/field" }
+    }
+  },
+  "$defs": {
+    "field": {
+      "type": "object",
+      "required": [
+        "name",
+        "label",
+        "type",
+        "schemaMandatory",
+        "relevance",
+        "section",
+        "appliesToEvents"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]*$" },
+        "label": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["text", "wholeNumber", "decimal", "date", "time", "dateTime", "boolean", "enum"]
+        },
+        "unit": { "type": ["string", "null"] },
+        "maxLength": { "type": ["integer", "null"], "minimum": 1 },
+        "enumRef": { "type": ["string", "null"] },
+        "schemaMandatory": { "type": "boolean" },
+        "mandatoryNote": { "type": ["string", "null"] },
+        "relevance": { "type": "string" },
+        "section": { "type": "string" },
+        "appliesToEvents": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "description": { "type": "string" },
+        "unsupportedByDnv": {
+          "type": "boolean",
+          "description": "True if the field is part of the OVD standard but DNV does not currently store or process it. Absent/false otherwise."
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "enum" } } },
+          "then": { "required": ["enumRef"] }
+        }
+      ]
+    }
+  }
+}

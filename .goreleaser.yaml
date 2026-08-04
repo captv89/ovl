@@ -1,0 +1,86 @@
+# GoReleaser skeleton (architecture handoff section 17, Phase 1).
+#
+# Cross-compiles ovl-vessel for the required OS/arch matrix with a signed
+# checksum file, and defines (but does not yet exercise) a multi-arch
+# ovl-office container image build. Not wired into CI yet — that is a
+# separate, still-open Phase 1 item; see PROJECT.md for the CI-provider
+# question and for which stages of this file are currently exercised vs.
+# inert. Full release-pipeline wiring (tagging, publishing, GitHub
+# Releases) is Phase 7 work.
+version: 2
+
+project_name: ovl
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: ovl-vessel
+    main: ./vessel
+    binary: ovl-vessel
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X main.version={{ .Version }} -X main.commit={{ .Commit }} -X main.date={{ .Date }}
+
+archives:
+  - id: ovl-vessel-archive
+    ids: [ovl-vessel]
+    name_template: >-
+      {{ .Binary }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}
+    formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+
+checksum:
+  name_template: "checksums.txt"
+
+# Keyless cosign signing (sigstore) rather than a long-lived GPG key: no
+# key custody burden, and it is the modern default for OSS Go releases.
+# Only produces a valid signature when run from an OIDC-capable CI
+# identity (e.g. GitHub Actions) — inert for a local/manual release,
+# which is fine since there is no CI pipeline yet (open Phase 1 item).
+signs:
+  - cmd: cosign
+    signature: "${artifact}.sig"
+    certificate: "${artifact}.pem"
+    args:
+      - sign-blob
+      - "--yes"
+      - "--output-signature=${signature}"
+      - "--output-certificate=${certificate}"
+      - "${artifact}"
+    artifacts: checksum
+
+# ovl-office is deployed via Docker Compose (architecture 12.1), not a
+# cross-compiled binary. This block is authored now per the Phase 1
+# checklist but is inert until office/Dockerfile exists (Phase 3).
+# dockers_v2 (not the older dockers/docker_manifests pair, which
+# GoReleaser is phasing out) builds and pushes one multi-platform
+# manifest per entry via buildx.
+dockers_v2:
+  - id: ovl-office
+    dockerfile: office/Dockerfile
+    images:
+      - ghcr.io/captv89/ovl-office
+    tags:
+      - "{{ .Version }}"
+      - latest
+    platforms:
+      - linux/amd64
+      - linux/arm64
+
+release:
+  github:
+    owner: captv89
+    name: ovl
+  draft: true

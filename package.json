@@ -1,0 +1,9 @@
+{
+  "name": "ovl",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "web/vessel",
+    "web/office"
+  ]
+}

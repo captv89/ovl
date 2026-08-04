@@ -1,0 +1,33 @@
+{
+  "wireVersion": 1,
+  "bundleId": "0190a1b2-c3d4-7e5f-8000-000000000001",
+  "versionNo": 7,
+  "publishedAt": "2026-07-23T10:30:00Z",
+  "schemas": [
+    {
+      "schemaName": "log-abstract",
+      "version": "3.13",
+      "policy": {
+        "O_ROB": "hidden",
+        "Voyage_Number": "companyMandatory",
+        "Wind_Force_Kn": "recommended"
+      },
+      "prefill": {
+        "HFO_ROB": "computed",
+        "Voyage_Number": "carryForward"
+      }
+    }
+  ],
+  "regulatoryProfiles": [
+    "mrv",
+    "cii"
+  ],
+  "maxGapHours": 8,
+  "ruleSeverities": {
+    "ROB_CONTINUITY": "error"
+  },
+  "defaultRoleNames": [
+    "master",
+    "officer"
+  ]
+}

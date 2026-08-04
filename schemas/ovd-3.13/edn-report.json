@@ -1,0 +1,155 @@
+{
+  "schemaName": "edn-report",
+  "ovdVersion": "3.13",
+  "version": "3.13",
+  "sections": [
+    "header",
+    "attachments"
+  ],
+  "fields": [
+    {
+      "name": "IMO",
+      "label": "IMO number",
+      "type": "wholeNumber",
+      "unit": null,
+      "maxLength": 7,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The unique 7-digit identification number assigned to the ship by the International Maritime Organization (IMO). Mandatory for linking the electricity delivery record to the correct vessel under MRV, DCS, and FuelEU Maritime frameworks."
+    },
+    {
+      "name": "EDN_Id",
+      "label": "EDN id",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "A persistent, unique internal system identifier assigned to a specific electricity delivery event for the vessel. Ensures lifetime traceability of shore power connections across database platforms."
+    },
+    {
+      "name": "EDN_Number",
+      "label": "Electricity Delivery Note Number",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The official Electricity Delivery Note (EDN) number provided by the shore power terminal. Acts as the primary regulatory receipt identifier for cold ironing operations."
+    },
+    {
+      "name": "Electricity_Delivery_Date",
+      "label": "Electricity Delivery Date",
+      "type": "date",
+      "unit": null,
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The Coordinated Universal Time (UTC) date marking the finalization and disconnection of the onshore power supply (OPS) service."
+    },
+    {
+      "name": "Electricity_Delivery_Time",
+      "label": "Electricity Delivery Time",
+      "type": "time",
+      "unit": null,
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The Coordinated Universal Time (UTC) time marking the exact finalization of the onshore power supply (OPS) connection."
+    },
+    {
+      "name": "Electrical_Work",
+      "label": "Electrical work delivered",
+      "type": "decimal",
+      "unit": "kWh",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The total electrical energy delivered to the vessel from the shore grid, measured in kilowatt-hours (kWh). Essential for verifying compliance with FuelEU Maritime zero-emission port stay mandates."
+    },
+    {
+      "name": "WtT_Electricity_Cf",
+      "label": "Well-to-Tank emissions factor",
+      "type": "decimal",
+      "unit": "g/kWh",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The Well-to-Tank (WtT) emission factor for the supplied electricity, expressed in g/kWh. Relevant for advanced lifecycle greenhouse gas (LCA) accounting for specific green power contracts."
+    },
+    {
+      "name": "Sustainability",
+      "label": "Sustainability",
+      "type": "text",
+      "unit": null,
+      "maxLength": 256,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "Reference identifier for a Power Purchase Agreement (PPA) or Guarantee of Origin (GoO), verifying the renewable or sustainable generation source of the shore-side electricity."
+    },
+    {
+      "name": "Port_Of_Reception",
+      "label": "Reception port",
+      "type": "text",
+      "unit": null,
+      "maxLength": 5,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The standardized 5-letter UN/LOCODE representing the specific commercial port facility where the shore-side electricity connection was established and utilized."
+    }
+  ]
+}

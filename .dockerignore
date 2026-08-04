@@ -1,0 +1,13 @@
+.git
+node_modules
+web/vessel/node_modules
+web/office/node_modules
+vessel/webdist
+office/webdist
+bin
+dist
+web/vessel/dist
+web/office/dist
+manual-test-observations
+handoff
+*.md

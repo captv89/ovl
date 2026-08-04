@@ -1,0 +1,66 @@
+name: ovl-office
+
+# Docker Compose stack for ovl-office (architecture 12.1).
+#
+# Two ways to use this file:
+#
+#   1. Local development (default, unchanged from before `office` existed
+#      here): `docker compose -f deploy/office/docker-compose.yml up -d`
+#      starts *only* Postgres — the `office` service below is behind the
+#      "full" profile, so a bare `up` never starts it. Run `ovl-office`
+#      itself on the host via `make run-office` against this Postgres, as
+#      always.
+#   2. A real deployment: `docker compose -f deploy/office/docker-compose.yml
+#      --profile full up -d` starts Postgres *and* the containerized
+#      `ovl-office` binary (built from office/Dockerfile), so the whole
+#      stack comes up with one command. See deploy/office/README.md for
+#      the full walkthrough, including a reverse-proxy example.
+#
+# An OIDC provider (Keycloak or Authentik) is deferred until the
+# office-roles/auth checklist item; see PROJECT.md's Phase 3 decisions
+# log for why. Office staff login stays on local accounts for now; the
+# API-key-gated GraphQL/CSV data API (Phase 6) is a separate,
+# already-built auth surface, not OIDC.
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ovl}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ovl}
+      POSTGRES_DB: ${POSTGRES_DB:-ovl_office}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ovl} -d ${POSTGRES_DB:-ovl_office}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  office:
+    profiles: ["full"]
+    build:
+      context: ../..
+      dockerfile: office/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      OVL_OFFICE_DB_DSN: postgres://${POSTGRES_USER:-ovl}:${POSTGRES_PASSWORD:-ovl}@postgres:5432/${POSTGRES_DB:-ovl_office}?sslmode=disable
+      OVL_OFFICE_DATA_DIR: /data
+      # Set to "true" once a TLS-terminating reverse proxy (see README)
+      # sits in front of :8080, so the session cookie is marked Secure.
+      # Leave unset/false while browsers reach office over plain HTTP —
+      # a Secure cookie is silently dropped there and login appears to fail.
+      # OVL_OFFICE_SECURE_COOKIES: "true"
+    ports:
+      - "8080:8080"
+    volumes:
+      - office-data:/data
+
+volumes:
+  postgres-data:
+  office-data:

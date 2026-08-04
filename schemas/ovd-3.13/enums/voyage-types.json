@@ -1,0 +1,22 @@
+{
+  "enumName": "voyage-types",
+  "ovdVersion": "3.13",
+  "values": [
+    {
+      "code": "STS",
+      "label": "STS (Ship-to-Ship)"
+    },
+    {
+      "code": "One way",
+      "label": "One way"
+    },
+    {
+      "code": "Round trip",
+      "label": "Round trip"
+    },
+    {
+      "code": "Idle",
+      "label": "Idle"
+    }
+  ]
+}

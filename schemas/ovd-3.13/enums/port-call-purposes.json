@@ -1,0 +1,136 @@
+{
+  "enumName": "port-call-purposes",
+  "ovdVersion": "3.13",
+  "values": [
+    {
+      "code": "CargoOperations",
+      "description": "Discharging and/or loading of cargo.",
+      "imo0172Code": 1
+    },
+    {
+      "code": "PassengerMovement",
+      "description": "Embarking and/or disembarking of passengers.",
+      "imo0172Code": 2
+    },
+    {
+      "code": "TakingBunkers",
+      "description": "Taking bunker (refuelling).",
+      "imo0172Code": 3
+    },
+    {
+      "code": "ChangingCrew",
+      "description": "Changing crew member(s).",
+      "imo0172Code": 4
+    },
+    {
+      "code": "GoodWillVisit",
+      "description": "Friendly visit.",
+      "imo0172Code": 5
+    },
+    {
+      "code": "TakingSupplies",
+      "description": "Taking supplies.",
+      "imo0172Code": 6
+    },
+    {
+      "code": "Repair",
+      "description": "To effect repair.",
+      "imo0172Code": 7
+    },
+    {
+      "code": "LaidUp",
+      "description": "Inactive service.",
+      "imo0172Code": 8
+    },
+    {
+      "code": "AwaitingOrders",
+      "description": "Awaiting job order.",
+      "imo0172Code": 9
+    },
+    {
+      "code": "Miscellaneous",
+      "description": "Miscellaneous purpose of call.",
+      "imo0172Code": 10
+    },
+    {
+      "code": "CrewMovement",
+      "description": "Embarking and/or disembarking of crews.",
+      "imo0172Code": 11
+    },
+    {
+      "code": "CruiseLeisureRecreation",
+      "description": "To visit a port for cruise, leisure and recreation.",
+      "imo0172Code": 12
+    },
+    {
+      "code": "UnderGovernmentOrder",
+      "description": "This is a visit to a port which has been ordered by government.",
+      "imo0172Code": 13
+    },
+    {
+      "code": "QuarantineInspection",
+      "description": "To have a quarantine inspection.",
+      "imo0172Code": 14
+    },
+    {
+      "code": "Refuge",
+      "description": "To seek protection against something unpleasant and/or threatening such as bad weather or danger.",
+      "imo0172Code": 15
+    },
+    {
+      "code": "UnloadingCargo",
+      "description": "Discharging of cargo from the means of transport.",
+      "imo0172Code": 16
+    },
+    {
+      "code": "LoadingCargo",
+      "description": "Loading of cargo onto the means of transport.",
+      "imo0172Code": 17
+    },
+    {
+      "code": "RepairInDryDock",
+      "description": "Vessel to undergo repair in a dry dock.",
+      "imo0172Code": 18
+    },
+    {
+      "code": "RepairInWetDock",
+      "description": "Repair of a vessel in a dock without removing the surrounding water.",
+      "imo0172Code": 19
+    },
+    {
+      "code": "CargoTankCleaning",
+      "description": "Cargo tanks of the means of transport will be cleaned.",
+      "imo0172Code": 20
+    },
+    {
+      "code": "MeansOfTransportCustomsClearance",
+      "description": "Means of transport will be customs cleared.",
+      "imo0172Code": 21
+    },
+    {
+      "code": "DeGassing",
+      "description": "Means of transport will be de-gassed.",
+      "imo0172Code": 22
+    },
+    {
+      "code": "WasteDisposal",
+      "description": "Means of transport will dispose of her waste.",
+      "imo0172Code": 23
+    },
+    {
+      "code": "OffshoreMobilizationOperations",
+      "description": "Preparing or finalizing a vessel or platform for offshore operations.",
+      "imo0172Code": 24
+    },
+    {
+      "code": "TransferOfPersonnel",
+      "description": "Transfer of personnel from or to a means of transport.",
+      "imo0172Code": 25
+    },
+    {
+      "code": "PassThrough",
+      "description": "Means of transport will pass through only.",
+      "imo0172Code": 98
+    }
+  ]
+}

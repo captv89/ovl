@@ -1,0 +1,362 @@
+{
+  "schemaName": "cargo-nomination",
+  "ovdVersion": "3.13",
+  "version": "3.13",
+  "sections": [
+    "details"
+  ],
+  "fields": [
+    {
+      "name": "Cargo_Nomination_Id",
+      "label": "Cargo nomination id",
+      "type": "text",
+      "unit": null,
+      "maxLength": 30,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "unique identifier of cargo nomination (shipment id)"
+    },
+    {
+      "name": "IMO",
+      "label": "IMO number",
+      "type": "wholeNumber",
+      "unit": null,
+      "maxLength": 7,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "IMO number of vessel carrying cargo"
+    },
+    {
+      "name": "Bill_Of_Lading_Date",
+      "label": "Bill of Lading date",
+      "type": "date",
+      "unit": null,
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "issue date of Bill of Lading (local date)"
+    },
+    {
+      "name": "Voyage_Number",
+      "label": "Voyage number",
+      "type": "text",
+      "unit": null,
+      "maxLength": 30,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "unique voyage name or number"
+    },
+    {
+      "name": "Voyage_Leg",
+      "label": "Voyage leg",
+      "type": "text",
+      "unit": null,
+      "maxLength": 30,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "unique name or number of voyage leg"
+    },
+    {
+      "name": "Inco_Term",
+      "label": "Incoterm",
+      "type": "enum",
+      "unit": null,
+      "maxLength": null,
+      "enumRef": "incoterms",
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "international commercial terms - IncoTerms 2020"
+    },
+    {
+      "name": "Seller_Code",
+      "label": "Seller code",
+      "type": "text",
+      "unit": null,
+      "maxLength": 30,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "company code of cargo seller"
+    },
+    {
+      "name": "Seller_Name",
+      "label": "Seller name",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "company name of cargo seller"
+    },
+    {
+      "name": "Loading_Port_Code",
+      "label": "Loading port code",
+      "type": "text",
+      "unit": null,
+      "maxLength": 5,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "UNLOCODE of port where cargo is loaded"
+    },
+    {
+      "name": "Other_Destination_From",
+      "label": "Place of delivery",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "other place of delivery or loading port name for unknown UNLOCODE"
+    },
+    {
+      "name": "Buyer_Code",
+      "label": "Buyer code",
+      "type": "text",
+      "unit": null,
+      "maxLength": 30,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "company code of cargo buyer"
+    },
+    {
+      "name": "Buyer_Name",
+      "label": "Buyer name",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "company name of cargo buyer"
+    },
+    {
+      "name": "Discharge_Port_Code",
+      "label": "Discharge port code",
+      "type": "text",
+      "unit": null,
+      "maxLength": 5,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "UNLOCODE of port where cargo is discharged"
+    },
+    {
+      "name": "Other_Destination_To",
+      "label": "Place of destination",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "place of destination or discharge port name for unknown UNLOCODE"
+    },
+    {
+      "name": "Cargo_Mt",
+      "label": "Cargo (mt)",
+      "type": "decimal",
+      "unit": "mt",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "weight of cargo carried in mt"
+    },
+    {
+      "name": "Cargo_TEU",
+      "label": "Cargo (TEU)",
+      "type": "wholeNumber",
+      "unit": "TEU",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "quantity of cargo carried in TEU"
+    },
+    {
+      "name": "Cargo_Product_Group_Name",
+      "label": "Cargo product group name",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "name of cargo product group"
+    },
+    {
+      "name": "Cargo_Product_Name",
+      "label": "Cargo product name",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "name of cargo product"
+    },
+    {
+      "name": "Cargo_Origin",
+      "label": "Cargo origin",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "origin of cargo"
+    },
+    {
+      "name": "Carbon_Offset_Mt",
+      "label": "Carbon offset (mt)",
+      "type": "decimal",
+      "unit": "mt",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "carbon offset in mt"
+    },
+    {
+      "name": "Carbon_Offset_Reference",
+      "label": "Carbon offset reference",
+      "type": "text",
+      "unit": null,
+      "maxLength": 500,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "evidence of carbon offset, e.g. document name, URL, ..."
+    },
+    {
+      "name": "Carbon_Offset_Comment",
+      "label": "Carbon offset comment",
+      "type": "text",
+      "unit": null,
+      "maxLength": 500,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "details",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "comment related to carbon offset"
+    }
+  ]
+}

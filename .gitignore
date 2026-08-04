@@ -1,0 +1,50 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Go
+/bin/
+*.test
+*.out
+vendor/
+
+# Node
+node_modules/
+dist/
+.vite/
+*.local
+
+# vessel/webdist and office/webdist are the embed.FS targets vite builds
+# web/vessel and web/office into (see each app's httpapi and
+# vite.config.ts) — real build output is untracked; only .gitkeep is, so
+# `go build` has a non-empty directory to embed even before `make
+# web-build` has ever run.
+vessel/webdist/*
+!vessel/webdist/.gitkeep
+office/webdist/*
+!office/webdist/.gitkeep
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Agent tooling — per-machine session state only. A shared .claude/
+# (settings.json, project skills) is deliberately still trackable.
+.claude/settings.local.json
+.claude/.headroom_wrap_marker.json
+.serena/
+
+# Runtime data (vessel/office local dev)
+*.db
+*.db-wal
+*.db-shm
+/data/
+
+# Scratch space (exports, working notes) - never committed
+/tmp/

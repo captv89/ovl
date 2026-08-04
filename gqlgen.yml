@@ -1,0 +1,38 @@
+# Config for office's external data API (architecture 13.2). Lives at
+# repo root (not office/graphql/) because gqlgen resolves schema/exec/
+# resolver paths relative to the config file's own directory, and this
+# repo's module root is also the repo root — keeping it here avoids
+# fragile relative-path juggling from a nested config.
+schema:
+  - office/graphql/schema.graphqls
+
+exec:
+  filename: office/graphql/generated.go
+  package: graphql
+
+model:
+  filename: office/graphql/models_gen.go
+  package: graphql
+
+resolver:
+  layout: single-file
+  filename: office/graphql/resolver.go
+  package: graphql
+
+models:
+  Time:
+    model:
+      - github.com/99designs/gqlgen/graphql.Time
+  # Report is hand-modeled (office/graphql/model.go), not generated —
+  # the fields(names) resolver needs the report's raw JSONB field values
+  # and resolved schema alongside the plain GraphQL-exposed columns, so
+  # a bare generated struct isn't enough. Forcing "fields" to a real
+  # resolver method matters just as much: gqlgen's default plain-struct-
+  # field binding would otherwise read obj.Fields directly and silently
+  # ignore the `names` argument the whole point of this field is.
+  Report:
+    model:
+      - github.com/captv89/ovl/office/graphql.Report
+    fields:
+      fields:
+        resolver: true

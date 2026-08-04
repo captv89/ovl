@@ -1,0 +1,56 @@
+# Architecture 13.2: office's external data API. Read-only — an API key
+# can query, never mutate (remarking/correcting/configuring stays
+# exclusively a session-authenticated office-staff action), so there is
+# deliberately no mutation type here at all.
+
+scalar Time
+
+# One field's typed value, projected from a report's raw fields map via
+# pkg/fieldproject (the same type-mapping pkg/csvout's CSV export uses,
+# so the two egress paths can never disagree about what a field's stored
+# value means). Exactly one of stringValue/numberValue/boolValue is set,
+# matching whichever the field's declared OVD type actually is.
+type FieldValue {
+  name: String!
+  label: String!
+  type: String!
+  stringValue: String
+  numberValue: Float
+  boolValue: Boolean
+}
+
+type Report {
+  vesselId: String!
+  vesselName: String!
+  vesselImo: String!
+  reportId: String!
+  versionNo: Int!
+  schemaName: String!
+  eventType: String!
+  state: String!
+  eventTime: Time!
+  # names lets a caller "pick whichever fields they need" — omit it (or
+  # pass an empty list) to get every field the report's schema defines.
+  fields(names: [String!]): [FieldValue!]!
+}
+
+type ReportPage {
+  items: [Report!]!
+  # True if more rows exist past this page (computed by fetching one
+  # extra row past limit, not a separate COUNT query — see resolver.go).
+  hasNextPage: Boolean!
+}
+
+input ReportFilterInput {
+  vesselId: String
+  groupId: String
+  state: String
+  eventType: String
+  schemaName: String
+  dateFrom: Time
+  dateTo: Time
+}
+
+type Query {
+  reports(filter: ReportFilterInput, limit: Int = 100, offset: Int = 0): ReportPage!
+}

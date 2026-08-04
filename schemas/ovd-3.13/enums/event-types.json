@@ -1,0 +1,171 @@
+{
+  "enumName": "event-types",
+  "ovdVersion": "3.13",
+  "values": [
+    {
+      "code": "Arrival",
+      "remark": "Arrival at berth",
+      "fixedSpelling": true
+    },
+    {
+      "code": "Departure",
+      "remark": "Departure from berth",
+      "fixedSpelling": true
+    },
+    {
+      "code": "ArrivalSTS",
+      "remark": "Arrival at STS location",
+      "fixedSpelling": true
+    },
+    {
+      "code": "DepartureSTS",
+      "remark": "Departure from STS location",
+      "fixedSpelling": true
+    },
+    {
+      "code": "STS",
+      "remark": "Events at which STS operation took place",
+      "fixedSpelling": true
+    },
+    {
+      "code": "BOSP",
+      "remark": "Start of 'underway' period for DCS regulation",
+      "fixedSpelling": true
+    },
+    {
+      "code": "EOSP",
+      "remark": "End of 'underway' period for DCS regulation",
+      "fixedSpelling": true
+    },
+    {
+      "code": "BeginOfSeaPassage",
+      "remark": "Alternative to BOSP",
+      "fixedSpelling": true
+    },
+    {
+      "code": "EndOfSeaPassage",
+      "remark": "Alternative to EOSP",
+      "fixedSpelling": true
+    },
+    {
+      "code": "FAOP",
+      "remark": "Alternative to BOSP",
+      "fixedSpelling": true
+    },
+    {
+      "code": "FullAheadOnPassage",
+      "remark": "Alternative to BOSP",
+      "fixedSpelling": true
+    },
+    {
+      "code": "BeginOfShifting",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "EndOfShifting",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Begin canal passage",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "End canal passage",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Begin Anchoring/Drifting",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "End Anchoring/Drifting",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Noon (Position) - Sea passage",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Noon (Position) - Port",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Noon (Position) - River",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Noon (Position) - Stoppage",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "ETA update",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Begin fuel change over",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "End fuel change over",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Change destination (Deviation)",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Begin of deviation",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "End of deviation",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Entering special area",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Leaving special area",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Other event",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Beginofoffhire",
+      "remark": "DEPRICATED - Alternatively use \"Offhire_reasons\" data field and specify the reason for off hire for each event after Beginofoffhire and to Endofoffhire",
+      "fixedSpelling": false
+    },
+    {
+      "code": "Endofoffhire",
+      "remark": null,
+      "fixedSpelling": false
+    },
+    {
+      "code": "Performance snapshot",
+      "remark": null,
+      "fixedSpelling": false
+    }
+  ]
+}

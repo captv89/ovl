@@ -1,0 +1,22 @@
+{
+  "enumName": "charter-types",
+  "ovdVersion": "3.13",
+  "values": [
+    {
+      "code": "TC",
+      "label": "Time Charter"
+    },
+    {
+      "code": "VC",
+      "label": "Voyage Charter"
+    },
+    {
+      "code": "CVC",
+      "label": "Consecutive Voyage Charter"
+    },
+    {
+      "code": "COA",
+      "label": "Contract Of Affreightment"
+    }
+  ]
+}

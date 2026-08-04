@@ -1,0 +1,9 @@
+{
+  "enumName": "operational-modes",
+  "ovdVersion": "3.13",
+  "values": [
+    { "code": "InPort" },
+    { "code": "AtSea" },
+    { "code": "Sailing" }
+  ]
+}

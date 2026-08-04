@@ -1,0 +1,354 @@
+// SPDX-License-Identifier: AGPL-3.0-only
+
+syntax = "proto3";
+
+// The vessel-office sync contract. Vessel-initiated only: the office never
+// connects to a vessel (architecture handoff section 11.1). One sync cycle
+// is PushOutbox, then attachment chunk transfer, then PullInbox, then
+// SyncStatus (section 11.2).
+package ovl.sync.v1;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/captv89/ovl/pkg/syncproto/gen/ovl/sync/v1;syncv1";
+
+// Which of the five OVD schemas a report or schema version belongs to
+// (architecture handoff section 7).
+enum ReportSchemaKind {
+  REPORT_SCHEMA_KIND_UNSPECIFIED = 0;
+  REPORT_SCHEMA_KIND_LOG_ABSTRACT = 1;
+  REPORT_SCHEMA_KIND_BUNKER_REPORT = 2;
+  REPORT_SCHEMA_KIND_EDN_REPORT = 3;
+  REPORT_SCHEMA_KIND_COMMERCIAL_PERIOD = 4;
+  REPORT_SCHEMA_KIND_CARGO_NOMINATION = 5;
+}
+
+// Report lifecycle states (architecture handoff section 8.1). A correction
+// is not a state of its own; it is a new ReportVersion with an incremented
+// version_no that re-enters the flow at DRAFT.
+enum ReportLifecycleState {
+  REPORT_LIFECYCLE_STATE_UNSPECIFIED = 0;
+  REPORT_LIFECYCLE_STATE_DRAFT = 1;
+  REPORT_LIFECYCLE_STATE_READY = 2;
+  REPORT_LIFECYCLE_STATE_SUBMITTED = 3;
+  REPORT_LIFECYCLE_STATE_SYNCED = 4;
+  REPORT_LIFECYCLE_STATE_PUSHED = 5;
+  REPORT_LIFECYCLE_STATE_REMARKED = 6;
+  REPORT_LIFECYCLE_STATE_INVALIDATED = 7;
+}
+
+// Audit trail event types. Values 1-11 are architecture handoff section
+// 14's own vocabulary, verbatim. Value 12 (FINDING_ACKNOWLEDGED) is a
+// later addition, not in that original list — added per an explicit
+// requirement from the vessel UI rework (see PROJECT.md's "Vessel UI
+// rework" section, Phase 3): warning acknowledgements must be
+// audit-logged and synced to office, not just client-local UI state.
+enum AuditEventType {
+  AUDIT_EVENT_TYPE_UNSPECIFIED = 0;
+  AUDIT_EVENT_TYPE_CREATED = 1;
+  AUDIT_EVENT_TYPE_SECTION_SAVED = 2;
+  AUDIT_EVENT_TYPE_HEALTH_CHECK_RESULT = 3;
+  AUDIT_EVENT_TYPE_SUBMITTED = 4;
+  AUDIT_EVENT_TYPE_SYNCED = 5;
+  AUDIT_EVENT_TYPE_REMARKED = 6;
+  AUDIT_EVENT_TYPE_CORRECTION_STARTED = 7;
+  AUDIT_EVENT_TYPE_RESUBMITTED = 8;
+  AUDIT_EVENT_TYPE_INVALIDATED = 9;
+  // 10 (AUDIT_EVENT_TYPE_VERACITY_PUSHED) was declared but never produced —
+  // the Veracity push integration was cancelled (DNV declined API access)
+  // before anything ever emitted this event type. Reserved, not reused:
+  // protobuf field/enum numbers are never safe to recycle once a .proto
+  // has shipped, even for a value nothing ever actually wrote.
+  reserved 10;
+  reserved "AUDIT_EVENT_TYPE_VERACITY_PUSHED";
+  AUDIT_EVENT_TYPE_RESTORE_APPLIED = 11;
+  AUDIT_EVENT_TYPE_FINDING_ACKNOWLEDGED = 12;
+}
+
+// One report version. `fields` holds the schema-driven field values
+// (409 fields for Log Abstract alone, varying by schema_kind/version), so it
+// is carried as a Struct rather than fixed protobuf fields.
+message ReportVersion {
+  string report_id = 1;   // UUIDv7, stable across corrections
+  int32 version_no = 2;   // starts at 1, increments per correction
+  ReportSchemaKind schema_kind = 3;
+  string schema_version = 4;   // e.g. "3.13", "3.13-company-r2"
+  string event_type = 5;       // OVD event type; schema-driven, not a proto enum
+  ReportLifecycleState state = 6;
+  google.protobuf.Timestamp event_time = 7;   // combined Date_UTC + Time_UTC
+  google.protobuf.Struct fields = 8;          // field name -> value
+  google.protobuf.Timestamp submitted_at = 9;
+}
+
+// One audit trail entry (architecture handoff section 14).
+message ReportAuditEvent {
+  string report_id = 1;
+  int32 version_no = 2;
+  AuditEventType event_type = 3;
+  string actor = 4;   // user id / display name
+  google.protobuf.Timestamp occurred_at = 5;
+  google.protobuf.Struct detail = 6;   // event-specific payload: section, field delta, rule names, batch id...
+}
+
+// A chat wall message (architecture handoff section 12.3). Text only.
+message ChatMessage {
+  string id = 1;
+  string report_id = 2;
+  string sender = 3;   // user id / display name
+  string body = 4;
+  google.protobuf.Timestamp sent_at = 5;
+}
+
+// One PushOutbox item. item_id + sequence_no give idempotent, ordered
+// upsert on retransmission after a dropped link (section 11.2 point 1).
+message OutboxItem {
+  string item_id = 1;
+  int64 sequence_no = 2;   // per-vessel monotonic
+  oneof payload {
+    ReportVersion report_version = 3;
+    ReportAuditEvent audit_event = 4;
+    ChatMessage chat_message = 5;
+  }
+}
+
+message ItemAck {
+  string item_id = 1;
+  bool accepted = 2;
+  string error = 3;   // set only when accepted is false
+}
+
+message PushOutboxRequest {
+  repeated OutboxItem items = 1;
+}
+
+message PushOutboxResponse {
+  repeated ItemAck acks = 1;
+}
+
+// Identifies an attachment for chunked, resumable, content-addressed
+// transfer (architecture handoff section 15).
+message AttachmentMeta {
+  string content_hash = 1;   // sha256 hex
+  string report_id = 2;
+  int32 version_no = 3;
+  string field_name = 4;     // schema field this attachment belongs to
+  int64 total_size = 5;
+  int32 chunk_size = 6;
+  string content_type = 7;
+  string filename = 8;       // original filename, for office's own attachment list/preview
+}
+
+message QueryMissingAttachmentChunksRequest {
+  AttachmentMeta attachment = 1;
+}
+
+message QueryMissingAttachmentChunksResponse {
+  bool already_complete = 1;
+  repeated int32 missing_chunk_indices = 2;
+}
+
+message UploadAttachmentChunkRequest {
+  string content_hash = 1;
+  int32 chunk_index = 2;
+  bytes data = 3;
+}
+
+message UploadAttachmentChunkResponse {
+  bool complete = 1;   // true once all chunks are received and the hash verified
+}
+
+// A published, immutable OVD schema version (architecture handoff section
+// 5.2). schema_json is the exact curated schema file content, transported
+// verbatim rather than round-tripped through Struct.
+message SchemaVersion {
+  ReportSchemaKind schema_kind = 1;
+  string version = 2;
+  bytes schema_json = 3;
+  google.protobuf.Timestamp published_at = 4;
+}
+
+// A published, immutable config bundle (architecture handoff section 6.5):
+// schema version references, field policies, regulatory profiles, cadence
+// rules, prefill overrides, default role set. Transported as the exact JSON
+// the office authored, like SchemaVersion.
+message ConfigBundle {
+  string bundle_id = 1;
+  int64 version_no = 2;
+  bytes content_json = 3;
+  google.protobuf.Timestamp published_at = 4;
+}
+
+// A field-level remark (architecture handoff section 12.3).
+message Remark {
+  string id = 1;
+  string report_id = 2;
+  int32 version_no = 3;
+  string field_name = 4;
+  string body = 5;
+  string author = 6;
+  google.protobuf.Timestamp created_at = 7;
+  bool resolved = 8;
+}
+
+// Computed office-side by cascade revalidation (architecture handoff
+// section 8.3) when an earlier report's change breaks a later one.
+message InvalidationNotice {
+  string report_id = 1;
+  int32 version_no = 2;
+  repeated string broken_rules = 3;
+  google.protobuf.Timestamp computed_at = 4;
+}
+
+// A signal that an office-generated restore bundle is available for this
+// vessel. The bundle itself travels out-of-band (architecture handoff
+// section 12.5); this is only the pull-side notification.
+message RestoreCommand {
+  string command_id = 1;
+  string reason = 2;
+  google.protobuf.Timestamp issued_at = 3;
+}
+
+// Which local-account action an office-issued UserCommand performs
+// (architecture 9.3/12.4's "Admin administers vessel users remotely" —
+// 2026-07-21 addition). Mirrors vessel/httpapi's own local Master-facing
+// actions exactly; a remote command can do nothing a Master couldn't
+// already do sitting at the vessel console.
+enum UserCommandAction {
+  USER_COMMAND_ACTION_UNSPECIFIED = 0;
+  USER_COMMAND_ACTION_CREATE = 1;
+  USER_COMMAND_ACTION_RESET_PASSWORD = 2;
+  USER_COMMAND_ACTION_SET_ROLE = 3;
+  USER_COMMAND_ACTION_SET_ACTIVE = 4;
+  USER_COMMAND_ACTION_SET_CAN_SUBMIT = 5;
+}
+
+// One office-issued vessel-account command (architecture 9.3/12.4's
+// remote user administration). temporary_password is plaintext, valid
+// only for CREATE/RESET_PASSWORD — office generates it, shows it once to
+// the Admin who queued the command (to relay to the crew member over
+// whatever comms the vessel has), and sends the same plaintext here so
+// the vessel can set it directly; this travels over the same
+// TLS-protected, per-vessel-credential-authenticated channel the sync
+// credential itself was issued over at enrollment, so it's no more
+// exposed in transit than that already-accepted precedent. The vessel
+// applies every one of these against the exact same guardrails its own
+// local handlers already enforce (no remote-created second Master, no
+// remote promotion to Master, Master cannot be deactivated) — see
+// vessel/httpapi/users.go's handleCreateUser/handleUpdateUser doc
+// comments for why those exist; a remote command is never trusted to
+// bypass them.
+message UserCommand {
+  string command_id = 1;
+  UserCommandAction action = 2;
+  string username = 3;              // identifies the account; for CREATE, the new username
+  string role = 4;                  // CREATE, SET_ROLE — vessel/auth.Role string value
+  string temporary_password = 5;    // CREATE, RESET_PASSWORD
+  bool can_submit = 6;               // SET_CAN_SUBMIT
+  bool active = 7;                   // SET_ACTIVE
+  string issued_by = 8;
+  google.protobuf.Timestamp issued_at = 9;
+}
+
+// A read-only snapshot of one vessel-local account, reported by the
+// vessel on every SyncStatus check-in so office has something to act on
+// when queuing a UserCommand — office has no other way to know a
+// vessel's current user roster, since sync is vessel-initiated only and
+// accounts are otherwise purely local. No password data ever appears
+// here.
+message VesselUserSummary {
+  string username = 1;
+  string role = 2;
+  bool active = 3;
+  bool can_submit = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+// Per-stream cursors, exchanged both ways: the vessel reports what it has
+// seen, the office returns the new position after a pull.
+message SyncCursors {
+  int64 config_bundle_cursor = 1;
+  int64 schema_version_cursor = 2;
+  int64 remark_cursor = 3;
+  int64 chat_cursor = 4;
+  int64 invalidation_notice_cursor = 5;
+  int64 restore_command_cursor = 6;
+  int64 user_command_cursor = 7;
+}
+
+message PullInboxRequest {
+  SyncCursors cursors = 1;
+}
+
+message PullInboxResponse {
+  repeated ConfigBundle config_bundles = 1;
+  repeated SchemaVersion schema_versions = 2;
+  repeated Remark remarks = 3;
+  repeated ChatMessage chat_messages = 4;
+  repeated InvalidationNotice invalidation_notices = 5;
+  repeated RestoreCommand restore_commands = 6;
+  repeated UserCommand user_commands = 8;
+  SyncCursors next_cursors = 7;
+}
+
+message SyncStatusRequest {
+  string app_version = 1;
+  SyncCursors cursors = 2;
+  // Restore command ids this vessel has successfully applied since its
+  // last SyncStatus call (architecture 12.5's DR push path) — the
+  // "confirming it's pushed" signal office's DR tab surfaces. Not
+  // cursor-based like the pull streams: a vessel may apply commands out
+  // of order relative to other pull streams, and this is an
+  // acknowledgement of completed work, not a position in a stream.
+  repeated string applied_restore_command_ids = 3;
+  // Same acknowledgement shape as above, for UserCommands.
+  repeated string applied_user_command_ids = 4;
+  // This vessel's full current user roster, reported every check-in (not
+  // cursor-delta — office's roster mirror is a point-in-time cache, and a
+  // vessel's user count is small enough that resending it in full every
+  // cycle is cheap and self-healing against a missed update).
+  repeated VesselUserSummary users = 5;
+  // The config bundle this vessel is currently running on: the id and
+  // version_no of the highest-version bundle it has applied (codebase
+  // audit 2026-07-22 §3.3). bundle_assignments records only which bundle
+  // the office *intends* a vessel to run; this is the vessel's own report
+  // of what it *actually* applied, so B2 can tell whether a ship is on its
+  // assigned bundle or several behind. Empty id / 0 version until the
+  // vessel has applied any bundle at all.
+  string applied_bundle_id = 6;
+  int64 applied_bundle_version = 7;
+}
+
+message SyncStatusResponse {
+  google.protobuf.Timestamp server_time = 1;
+}
+
+// Architecture 12.5's DR push path, second half: once the vessel has
+// seen a RestoreCommand notification via PullInbox, it calls this to
+// fetch the actual encrypted bundle bytes — the same ciphertext
+// office/httpapi's browser-download endpoint would serve an Admin,
+// fetched here instead over the vessel's own credential-authenticated
+// sync connection (no separate out-of-band file transfer needed, since
+// by the time the vessel saw the notification it already has a working
+// connection to office). The response carries opaque encrypted bytes,
+// not a structured Bundle — office never has the vessel's private key,
+// so it cannot and does not decrypt or interpret this payload itself.
+message FetchRestoreBundleRequest {
+  string command_id = 1;
+}
+
+message FetchRestoreBundleResponse {
+  bytes ciphertext = 1;
+}
+
+// The vessel-office sync contract (architecture handoff section 11). Served
+// over ConnectRPC so the same handlers speak gRPC, gRPC-Web and plain
+// HTTP/JSON.
+service SyncService {
+  rpc PushOutbox(PushOutboxRequest) returns (PushOutboxResponse);
+  rpc QueryMissingAttachmentChunks(QueryMissingAttachmentChunksRequest) returns (QueryMissingAttachmentChunksResponse);
+  rpc UploadAttachmentChunk(UploadAttachmentChunkRequest) returns (UploadAttachmentChunkResponse);
+  rpc PullInbox(PullInboxRequest) returns (PullInboxResponse);
+  rpc SyncStatus(SyncStatusRequest) returns (SyncStatusResponse);
+  rpc FetchRestoreBundle(FetchRestoreBundleRequest) returns (FetchRestoreBundleResponse);
+}

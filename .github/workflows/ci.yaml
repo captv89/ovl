@@ -1,0 +1,93 @@
+# CI (Phase 1). Written ahead of pushing a GitHub remote — see
+# PROJECT.md's decisions log — so it will not actually run until this
+# repo is pushed and these triggers start firing.
+#
+# Schema meta-schema validation isn't a separate step: it's already
+# exercised by `go test ./...` via pkg/schema's
+# TestLoad_RealCuratedSchemas, which loads and validates every curated
+# OVD 3.13 schema file against schemas/meta-schema.json.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  go:
+    name: Go build/vet/test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: build (CGO off, per architecture 9.1)
+        run: CGO_ENABLED=0 make build
+      - name: vet
+        run: make vet
+      - name: gofmt check
+        run: |
+          fmt_out="$(gofmt -l .)"
+          if [ -n "$fmt_out" ]; then
+            echo "gofmt needs to be run on:"
+            echo "$fmt_out"
+            exit 1
+          fi
+      - name: test (race-enabled, CGO off)
+        run: CGO_ENABLED=0 go test ./... -race
+      - uses: golangci/golangci-lint-action@v6
+        with:
+          version: v2.12
+
+  web:
+    name: Web build (vessel + office)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: install
+        run: make web-install
+      - name: build
+        run: make web-build
+
+  security:
+    name: Security Checks (Govulncheck, Gosec, Gitleaks, NPM Audit)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Go vulnerability check (govulncheck)
+        uses: golang/govulncheck-action@v1
+        with:
+          go-version-file: go.mod
+
+      - name: Go SAST (gosec)
+        uses: securego/gosec-action@v2
+        with:
+          args: '-exclude-dir=tmp ./...'
+
+      - name: Secret scanning (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: NPM audit (web packages)
+        run: |
+          make web-install
+          make web-audit
+

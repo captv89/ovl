@@ -1,0 +1,380 @@
+{
+  "schemaName": "bunker-report",
+  "ovdVersion": "3.13",
+  "version": "3.13",
+  "sections": [
+    "header",
+    "fuelProperties",
+    "attachments"
+  ],
+  "fields": [
+    {
+      "name": "IMO",
+      "label": "IMO number",
+      "type": "wholeNumber",
+      "unit": null,
+      "maxLength": 7,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The unique 7-digit International Maritime Organization identification number assigned to the vessel. Mandatory for linking bunker records to the correct ship under MRV and DCS frameworks."
+    },
+    {
+      "name": "BDN_Number",
+      "label": "Bunker Delivery Note Number",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The unique alphanumeric identifier for the Bunker Delivery Note. This references a specific bunker drop and must be used to track the exact batch consumption in operational logs."
+    },
+    {
+      "name": "Used_By_BDN",
+      "label": "BDN number of the resulting fuel blend",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": "A value is required for fuel components.",
+      "relevance": "out of scope for GHG verification",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The resulting BDN number assigned to a new fuel blend created onboard. Used to trace the consumption of blended fuels back to their individual component bunker drops."
+    },
+    {
+      "name": "Coming_From_BDN",
+      "label": "BDN number of parent fuel",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": "A value is required for fuel components, where the component is already defined as a bunker record.",
+      "relevance": "out of scope for GHG verification",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The original parent BDN number of a fuel component that is being used to create an onboard fuel blend."
+    },
+    {
+      "name": "Bunker_Delivery_Date",
+      "label": "Bunker Delivery Date",
+      "type": "date",
+      "unit": null,
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The Coordinated Universal Time (UTC) date marking the completion of the bunker delivery operations. Essential for chronologically ordering fuel batches."
+    },
+    {
+      "name": "Bunker_Delivery_Time",
+      "label": "Bunker Delivery Time",
+      "type": "time",
+      "unit": null,
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The Coordinated Universal Time (UTC) time marking the completion of the bunker transfer."
+    },
+    {
+      "name": "Fuel_Type",
+      "label": "Fuel Type",
+      "type": "enum",
+      "unit": null,
+      "maxLength": null,
+      "enumRef": "fuel-types",
+      "schemaMandatory": true,
+      "mandatoryNote": null,
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The standardized fuel classification code (e.g., HFO, LFO, MGO, BioLNG, eMethanol) representing the chemical and regulatory category of the delivered fuel."
+    },
+    {
+      "name": "Mass",
+      "label": "Mass",
+      "type": "decimal",
+      "unit": "mt",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": true,
+      "mandatoryNote": "A value is required for all fuel types, except for the fuel type \"BLEND\" where it is optional to report the mass.",
+      "relevance": "mandatory for MRV&DCS",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The total delivered mass of the fuel in metric tons (mt). Critical for mass-balance tracking across voyage consumption and remaining onboard (ROB) calculations."
+    },
+    {
+      "name": "EU_Lower_Calorific_Value",
+      "label": "Lower Calorific Value (EU)",
+      "type": "decimal",
+      "unit": "MJ/kg",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "Mandatory for biofuels for FuelEU Maritime",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The Lower Calorific Value (LCV) of the fuel in MJ/kg, defined according to Annex III of Directive (EU) 2018/2001. Mandatory for calculating energy pools for biofuels under the FuelEU Maritime regulation."
+    },
+    {
+      "name": "EU_GHG_Intensity",
+      "label": "EU GHG emission intensity",
+      "type": "decimal",
+      "unit": "gCO2eq/MJ",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "Mandatory for biofuels and e-fuels for FuelEU Maritime",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The Well-to-Wake (WtW) greenhouse gas emission intensity 'E' expressed in gCO2eq/MJ. Mandatory reporting for biofuels and e-fuels under FuelEU Maritime, derived from the Proof of Sustainability."
+    },
+    {
+      "name": "Sustainability",
+      "label": "Sustainability",
+      "type": "text",
+      "unit": null,
+      "maxLength": 256,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "Mandatory for biofuels for MRV/DCS and FuelEU Maritime",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "Reference string containing the Unique Number of the Proof of Sustainability (PoS) or the recognized certification scheme (e.g., ISCC, RSB). Mandatory for claiming zero or reduced emission factors for biofuels under MRV/DCS and FuelEU Maritime."
+    },
+    {
+      "name": "Lower_Heating_Value",
+      "label": "Lower heating value",
+      "type": "decimal",
+      "unit": "MJ/kg",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "Mandatory for biofuels for DCS",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The Lower Calorific Value (LCV) of the fuel in MJ/kg as defined by IMO guidelines. Used specifically for calculating energy and mass equivalents for IMO DCS and CII reporting."
+    },
+    {
+      "name": "IMO_GHG_Intensity",
+      "label": "IMO GHG emission intensity",
+      "type": "decimal",
+      "unit": "gCO2eq/MJ",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "Mandatory for biofuels under IMO DCS/CII scheme until LCA guidelines are applied in IMO reporting scheme",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The greenhouse gas intensity value for biofuels applied under MEPC.1/Circ.905 guidelines. Required for IMO DCS/CII reporting until formalized LCA guidelines are fully implemented."
+    },
+    {
+      "name": "FLL_Energy_Share",
+      "label": "Energy share in fuel blend",
+      "type": "decimal",
+      "unit": "%",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The percentage share of total energy contributed by a specific fuel component within an onboard blend, calculated based on the IMO Lower Calorific Value. Supports Fuel Lifecycle Label (FLL) tracking."
+    },
+    {
+      "name": "IMO_Fuel_Pathway_Code",
+      "label": "Fuel pathway code",
+      "type": "text",
+      "unit": null,
+      "maxLength": 50,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The specific production pathway code as defined by IMO LCA guidelines. Serves as the unique identifier for evaluating the well-to-tank emissions footprint of alternative fuels."
+    },
+    {
+      "name": "Density_At_15dg",
+      "label": "Density @ 15 °C",
+      "type": "decimal",
+      "unit": "mt/m³",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The physical density of the delivered fuel measured in metric tons per cubic meter (mt/m3) at a standard reference temperature of 15 degrees Celsius."
+    },
+    {
+      "name": "Sulphur_Content",
+      "label": "Sulphur Content",
+      "type": "decimal",
+      "unit": "% m/m",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The mass fraction percentage (% m/m) of sulphur present in the delivered fuel. Used to verify compliance with MARPOL Annex VI global sulphur caps and ECA zone limits."
+    },
+    {
+      "name": "Viscosity",
+      "label": "Viscosity",
+      "type": "decimal",
+      "unit": "cSt",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The kinematic viscosity of the fuel at a standard reference temperature, usually measured in centistokes (cSt), dictating necessary onboard heating and purification parameters."
+    },
+    {
+      "name": "Water_Content",
+      "label": "Water content",
+      "type": "decimal",
+      "unit": "% V/V",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The percentage of water by volume (% V/V) present in the delivered bunker batch."
+    },
+    {
+      "name": "Higher_Heating_Value",
+      "label": "Higher heating value",
+      "type": "decimal",
+      "unit": "MJ/kg",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The Higher Heating Value (HHV) or gross calorific value of the fuel in MJ/kg, capturing total heat released including the condensation of water vapor."
+    },
+    {
+      "name": "Bunker_Port",
+      "label": "Bunker port",
+      "type": "text",
+      "unit": null,
+      "maxLength": 5,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The 5-letter UN/LOCODE identifying the geographical port or location where the bunker delivery took place."
+    },
+    {
+      "name": "Grade",
+      "label": "Grade",
+      "type": "text",
+      "unit": null,
+      "maxLength": 10,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "header",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The commercial ISO 8217 specification grade of the fuel (e.g., RMG 380, DMA) defining its physical and chemical boundaries."
+    },
+    {
+      "name": "TtW_CO2_CF",
+      "label": "Tank-to-Wake CO2 conversion factor",
+      "type": "decimal",
+      "unit": "gCO2/g",
+      "maxLength": null,
+      "enumRef": null,
+      "schemaMandatory": false,
+      "mandatoryNote": null,
+      "relevance": "out of scope for GHG verification",
+      "section": "fuelProperties",
+      "appliesToEvents": [
+        "*"
+      ],
+      "description": "The Tank-to-Wake CO2 conversion factor (gCO2/gFuel). Historically used for non-standard fuels; deprecated for post-2024 compliance reporting where standardized regulatory factors or DNV-approved pathways are mandated."
+    }
+  ]
+}

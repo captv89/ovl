@@ -1,0 +1,414 @@
+{
+  "enumName": "fuel-types",
+  "ovdVersion": "3.13",
+  "values": [
+    {
+      "code": "HFO",
+      "description": null,
+      "remark": "Residual fuels of viscosity higher than 20 cSt at 50°C **)",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "HFO",
+      "imoFuelTypeName": "HeavyFuel"
+    },
+    {
+      "code": "LFO",
+      "description": null,
+      "remark": "Residual fuels of viscosity lower or equal to 80 cSt at 50°C **)",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "LFO",
+      "imoFuelTypeName": "LightFuel"
+    },
+    {
+      "code": "MGO",
+      "description": null,
+      "remark": "ISO 8217 Grades DMX to DMB",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "MGO",
+      "imoFuelTypeName": "DieselGasOil"
+    },
+    {
+      "code": "MDO",
+      "description": null,
+      "remark": "ISO 8217 Grades DMX to DMB",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "MDO",
+      "imoFuelTypeName": "DieselGasOil"
+    },
+    {
+      "code": "LPGP",
+      "description": "LPG (Propane)",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "LPG_PROPANE",
+      "imoFuelTypeName": "LPGPropane"
+    },
+    {
+      "code": "LPGB",
+      "description": "LPG (Butane)",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "LPG_BUTANE",
+      "imoFuelTypeName": "LPGButane"
+    },
+    {
+      "code": "LNG",
+      "description": null,
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "LNG",
+      "imoFuelTypeName": "LNG"
+    },
+    {
+      "code": "LNGN2",
+      "description": "Nitrogen part in LNG cargo as fuel (see Notes on GHG reporting for details)",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "OTHER",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "Methanol",
+      "description": null,
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "METHANOL",
+      "imoFuelTypeName": "Methanol"
+    },
+    {
+      "code": "Ethanol",
+      "description": null,
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "ETHANOL",
+      "imoFuelTypeName": "Ethanol"
+    },
+    {
+      "code": "Ethane",
+      "description": null,
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "OTHER",
+      "imoFuelTypeName": "Ethane"
+    },
+    {
+      "code": "Blend",
+      "description": "Fuel consisting of one or more components. The component(s) must be specified in the Bunker Report.",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": null,
+      "imoFuelTypeName": null
+    },
+    {
+      "code": "eMDO",
+      "description": "Synthetic MDO",
+      "remark": "Considerations of GHG emissions reducing effects of those fuels require individual approval by DNV as verifier",
+      "extraReportingRequirements": "GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "E_DIESEL",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "eMGO",
+      "description": "Synthetic MGO",
+      "remark": null,
+      "extraReportingRequirements": "GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "E_DIESEL",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "eLPG",
+      "description": "Synthetic LPG",
+      "remark": null,
+      "extraReportingRequirements": "GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "E_LPG",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "eDME",
+      "description": "Synthetic DiMethyl Ether",
+      "remark": null,
+      "extraReportingRequirements": "GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "E_DME",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "HVO",
+      "description": "Hydrotreated Vegetable Oil",
+      "remark": null,
+      "extraReportingRequirements": "LCV, GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "HVO",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "FAME",
+      "description": "Fatty Acid Methyl Ester (bio diesel)",
+      "remark": null,
+      "extraReportingRequirements": "LCV, GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "BIO_DIESEL",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "BioDiesel",
+      "description": "Bio diesel (same as FAME)",
+      "remark": null,
+      "extraReportingRequirements": "LCV, GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "BIO_DIESEL",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "BioLNG",
+      "description": "Bio LNG",
+      "remark": null,
+      "extraReportingRequirements": "LCV, GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "BIO_LNG",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "eLNG",
+      "description": "Synthetic LNG",
+      "remark": null,
+      "extraReportingRequirements": "GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "E_LNG",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "BioMethanol",
+      "description": "Bio Methanol",
+      "remark": null,
+      "extraReportingRequirements": "LCV, GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "BIO_METHANOL",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "eMethanol",
+      "description": "Synthetic Methanol",
+      "remark": null,
+      "extraReportingRequirements": "GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "E_METHANOL",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "NH3",
+      "description": "Ammonia",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "NH3",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "H2",
+      "description": "Hydrogen",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "H2",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "BioH2",
+      "description": "Bio Hydrogen",
+      "remark": null,
+      "extraReportingRequirements": "LCV, GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "BIO_H2",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "eH2",
+      "description": "Synthetic Hydrogen",
+      "remark": null,
+      "extraReportingRequirements": "GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "E_H2",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "eNH3",
+      "description": "Synthetic Ammonia",
+      "remark": null,
+      "extraReportingRequirements": "GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "E_NH3",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "LBG",
+      "description": "Bio LNG",
+      "remark": null,
+      "extraReportingRequirements": "LCV, GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "BIO_LNG",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "OtherBio",
+      "description": "Liquid biofuel other than HVO and FAME (biodiesel)",
+      "remark": null,
+      "extraReportingRequirements": "LCV, GHG intensity, reference to sustainabilty evidence",
+      "euUkFuelTypeName": "OTHER",
+      "imoFuelTypeName": "Other"
+    },
+    {
+      "code": "LSHFO",
+      "description": "Low sulfur HFO - unspecified sulfur content",
+      "remark": "Residual fuels of viscosity higher than 20 cSt at 50°C **)",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "HFO",
+      "imoFuelTypeName": "HeavyFuel"
+    },
+    {
+      "code": "LSLFO",
+      "description": "Low sulfur LFO - unspecified sulfur content",
+      "remark": "Residual fuels of viscosity lower or equal to 80 cSt at 50°C **)",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "LFO",
+      "imoFuelTypeName": "LightFuel"
+    },
+    {
+      "code": "LSMGO",
+      "description": "Low sulfur MGO - unspecified sulfur content",
+      "remark": "ISO 8217 Grades DMX to DMB",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "MGO",
+      "imoFuelTypeName": "DieselGasOil"
+    },
+    {
+      "code": "ULSFO2020",
+      "description": "HFO w/ a sulfur content of 0.1% or below",
+      "remark": "Residual fuels of viscosity higher than 20 cSt at 50°C **)",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "HFO",
+      "imoFuelTypeName": "HeavyFuel"
+    },
+    {
+      "code": "ULSLFO2020",
+      "description": "LFO w/ a sulfur content of 0.1% or below",
+      "remark": "Residual fuels of viscosity lower or equal to 80 cSt at 50°C **)",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "LFO",
+      "imoFuelTypeName": "LightFuel"
+    },
+    {
+      "code": "ULSMDO2020",
+      "description": "MDO w/ a sulfur content of 0.1% or below",
+      "remark": "ISO 8217 Grades DMX to DMB",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "MDO",
+      "imoFuelTypeName": "DieselGasOil"
+    },
+    {
+      "code": "ULSMGO2020",
+      "description": "MGO w/ a sulfur content of 0.1% or below",
+      "remark": "ISO 8217 Grades DMX to DMB",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "MGO",
+      "imoFuelTypeName": "DieselGasOil"
+    },
+    {
+      "code": "VLSFO",
+      "description": null,
+      "remark": "Residual fuels of viscosity higher than 20 cSt at 50°C **)",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "HFO",
+      "imoFuelTypeName": "HeavyFuel"
+    },
+    {
+      "code": "VLSFO2020",
+      "description": "HFO w/ a sulfur content between 0.5% and 0.1%",
+      "remark": "Residual fuels of viscosity higher than 20 cSt at 50°C **)",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "HFO",
+      "imoFuelTypeName": "HeavyFuel"
+    },
+    {
+      "code": "VLSLFO2020",
+      "description": "LFO w/ a sulfur content between 0.5% and 0.1%",
+      "remark": "Residual fuels of viscosity lower or equal to 80 cSt at 50°C **)",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "LFO",
+      "imoFuelTypeName": "LightFuel"
+    },
+    {
+      "code": "B100LFO",
+      "description": null,
+      "remark": "Deprecated and not to be used in 2024 and onwards",
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": null,
+      "imoFuelTypeName": null
+    },
+    {
+      "code": "B100MGO",
+      "description": null,
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": null,
+      "imoFuelTypeName": null
+    },
+    {
+      "code": "B10LFO",
+      "description": "LFO w/ a bio fuel content of 10%",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": null,
+      "imoFuelTypeName": null
+    },
+    {
+      "code": "B10MGO",
+      "description": "MGO w/ a bio fuel content of 10%",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": null,
+      "imoFuelTypeName": null
+    },
+    {
+      "code": "B20LFO",
+      "description": "LFO w/ a bio fuel content of 20%",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": null,
+      "imoFuelTypeName": null
+    },
+    {
+      "code": "B24LFO",
+      "description": "LFO w/ a bio fuel content of 24.99%",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": null,
+      "imoFuelTypeName": null
+    },
+    {
+      "code": "B30LFO",
+      "description": null,
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": null,
+      "imoFuelTypeName": null
+    },
+    {
+      "code": "B50MGO",
+      "description": null,
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": null,
+      "imoFuelTypeName": null
+    },
+    {
+      "code": "BioLFO",
+      "description": "LFO w/ a bio fuel content of 100%, i.e. pure bio fuel",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": null,
+      "imoFuelTypeName": null
+    },
+    {
+      "code": "BioMGO",
+      "description": "MGO w/ a bio fuel content of 100%, i.e. pure bio fuel",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": null,
+      "imoFuelTypeName": null
+    },
+    {
+      "code": "Other",
+      "description": "Any other fuel has to be agreed with DNV as verifier",
+      "remark": null,
+      "extraReportingRequirements": null,
+      "euUkFuelTypeName": "Unknown",
+      "imoFuelTypeName": "Unknown"
+    }
+  ]
+}

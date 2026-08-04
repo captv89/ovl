@@ -1,0 +1,22 @@
+# Gitleaks config for OVL. Auto-loaded from the repo root by
+# `gitleaks detect` (Makefile's secretscan target) — no --config flag
+# needed. Every entry below is a verified false positive, not a real
+# secret; see each entry's comment for why.
+title = "ovl gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Known false positives — documented example/placeholder values, not real credentials"
+regexes = [
+  # "stub-sensor-key" is the made-up example bearer token in this repo's
+  # own sensor/VMS API docs (docs/integrations/*.md) and the plan that
+  # added them — a documentation placeholder, never a real key.
+  '''stub-sensor-key''',
+  # vessel/auth/password.go's temporaryPasswordAlphabet: a charset
+  # constant (visually-unambiguous letters/digits) used to *generate*
+  # random temporary passwords, not a credential itself. High entropy
+  # trips gitleaks' generic-api-key heuristic on the literal string.
+  '''23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz''',
+]

@@ -1,0 +1,50 @@
+{
+  "enumName": "incoterms",
+  "ovdVersion": "3.13",
+  "values": [
+    {
+      "code": "EXW",
+      "label": "EX Works"
+    },
+    {
+      "code": "FCA",
+      "label": "Free Carrier"
+    },
+    {
+      "code": "FAS",
+      "label": "Free Alongside Ship"
+    },
+    {
+      "code": "FOB",
+      "label": "Free On Board"
+    },
+    {
+      "code": "CFR",
+      "label": "Cost and Freight"
+    },
+    {
+      "code": "CIF",
+      "label": "Cost, Insurance and Freight"
+    },
+    {
+      "code": "CPT",
+      "label": "Carriage Paid To"
+    },
+    {
+      "code": "CIP",
+      "label": "Carriage and Insurance Paid to"
+    },
+    {
+      "code": "DAP",
+      "label": "Delivered At Place"
+    },
+    {
+      "code": "DPU",
+      "label": "Delivered at Place Unloaded"
+    },
+    {
+      "code": "DDP",
+      "label": "Delivered Duty Paid"
+    }
+  ]
+}

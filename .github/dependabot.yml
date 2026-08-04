@@ -1,0 +1,29 @@
+version: 2
+updates:
+  # Go dependencies
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  # NPM dependencies for vessel UI
+  - package-ecosystem: "npm"
+    directory: "/web/vessel"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+  # NPM dependencies for office UI
+  - package-ecosystem: "npm"
+    directory: "/web/office"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5

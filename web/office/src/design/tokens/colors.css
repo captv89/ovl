@@ -1,0 +1,238 @@
+/* =========================================================================
+   Tideline — Color Tokens
+   Material 3 tonal-palette structure, re-hued for a maritime brand:
+   Primary = Deep Sea Navy, Secondary = Verdigris Teal, Tertiary = Brass,
+   Error = Distress Red, Neutral / Neutral-Variant = Fog Gray (cool, blue-tinted).
+   Each family is a 13-step tonal ramp (0→100, dark→light), from which
+   light/dark THEME ROLES are derived per Material 3 conventions.
+   ========================================================================= */
+
+:root {
+  /* ---------- Primary — Deep Sea Navy ---------- */
+  --md-ref-primary-0: #000000;
+  --md-ref-primary-10: #001621;
+  --md-ref-primary-20: #012c3f;
+  --md-ref-primary-30: #0a4359;
+  --md-ref-primary-40: #14506b;   /* brand anchor */
+  --md-ref-primary-50: #2c6d8a;
+  --md-ref-primary-60: #4b8aa8;
+  --md-ref-primary-70: #6ea7c4;
+  --md-ref-primary-80: #a3c9dc;
+  --md-ref-primary-90: #d3e7f0;
+  --md-ref-primary-95: #e8f3f7;
+  --md-ref-primary-98: #f5fafc;
+  --md-ref-primary-99: #fafdfe;
+  --md-ref-primary-100: #ffffff;
+
+  /* ---------- Secondary — Verdigris Teal ---------- */
+  --md-ref-secondary-0: #000000;
+  --md-ref-secondary-10: #041f1e;
+  --md-ref-secondary-20: #0e3534;
+  --md-ref-secondary-30: #1c4e4c;
+  --md-ref-secondary-40: #2e8b8b;  /* brand anchor */
+  --md-ref-secondary-50: #379b9a;
+  --md-ref-secondary-60: #5cb3b1;
+  --md-ref-secondary-70: #82c7c5;
+  --md-ref-secondary-80: #abdbd9;
+  --md-ref-secondary-90: #d3eeed;
+  --md-ref-secondary-95: #e7f6f5;
+  --md-ref-secondary-98: #f4fbfb;
+  --md-ref-secondary-99: #fafdfd;
+  --md-ref-secondary-100: #ffffff;
+
+  /* ---------- Tertiary — Brass (lighthouse / fittings accent) ---------- */
+  --md-ref-tertiary-0: #000000;
+  --md-ref-tertiary-10: #2a1c00;
+  --md-ref-tertiary-20: #493100;
+  --md-ref-tertiary-30: #6b4a05;
+  --md-ref-tertiary-40: #8f6416;
+  --md-ref-tertiary-50: #a97c2c;
+  --md-ref-tertiary-60: #c69a4c;  /* brand anchor */
+  --md-ref-tertiary-70: #d9b571;
+  --md-ref-tertiary-80: #e9d09b;
+  --md-ref-tertiary-90: #f5e7c8;
+  --md-ref-tertiary-95: #faf1de;
+  --md-ref-tertiary-98: #fdf8ee;
+  --md-ref-tertiary-99: #fefbf5;
+  --md-ref-tertiary-100: #ffffff;
+
+  /* ---------- Error — Distress Red ---------- */
+  --md-ref-error-0: #000000;
+  --md-ref-error-10: #2d0000;
+  --md-ref-error-20: #4c0500;
+  --md-ref-error-30: #6f1400;
+  --md-ref-error-40: #96261a;
+  --md-ref-error-50: #b53d2c;
+  --md-ref-error-60: #d15b48;
+  --md-ref-error-70: #e6816f;
+  --md-ref-error-80: #f2ab9d;
+  --md-ref-error-90: #fbd6cd;
+  --md-ref-error-95: #ffebe6;
+  --md-ref-error-98: #fff5f2;
+  --md-ref-error-99: #fffbfa;
+  --md-ref-error-100: #ffffff;
+
+  /* ---------- Neutral — Fog Gray (cool, blue-tinted) ---------- */
+  --md-ref-neutral-0: #000000;
+  --md-ref-neutral-4: #0a0f11;
+  --md-ref-neutral-6: #0e1416;
+  --md-ref-neutral-10: #1a2124;
+  --md-ref-neutral-12: #1e2528;
+  --md-ref-neutral-17: #262d30;
+  --md-ref-neutral-20: #2f3639;
+  --md-ref-neutral-22: #333a3d;
+  --md-ref-neutral-24: #383f42;
+  --md-ref-neutral-30: #454c4f;
+  --md-ref-neutral-40: #5d6467;
+  --md-ref-neutral-50: #767c7f;
+  --md-ref-neutral-60: #909699;
+  --md-ref-neutral-70: #acb2b4;
+  --md-ref-neutral-80: #c8cdcf;
+  --md-ref-neutral-87: #dbe0e1;
+  --md-ref-neutral-90: #e4e9ea;
+  --md-ref-neutral-92: #eaeeef;
+  --md-ref-neutral-94: #eff3f4;
+  --md-ref-neutral-95: #f2f5f6;
+  --md-ref-neutral-96: #f4f7f8;  /* brand anchor: app background */
+  --md-ref-neutral-98: #f9fbfc;
+  --md-ref-neutral-99: #fcfdfe;
+  --md-ref-neutral-100: #ffffff;
+
+  /* ---------- Neutral Variant — Slate Fog (more blue chroma, for outlines) ---------- */
+  --md-ref-neutral-variant-0: #000000;
+  --md-ref-neutral-variant-10: #161e21;
+  --md-ref-neutral-variant-20: #2b3437;
+  --md-ref-neutral-variant-30: #414b4f;
+  --md-ref-neutral-variant-40: #596468;
+  --md-ref-neutral-variant-50: #717d80;
+  --md-ref-neutral-variant-60: #8b9699;
+  --md-ref-neutral-variant-70: #a6b1b4;
+  --md-ref-neutral-variant-80: #c3cdd0;
+  --md-ref-neutral-variant-90: #dfe9ec;
+  --md-ref-neutral-variant-95: #edf4f6;
+  --md-ref-neutral-variant-98: #f6fafb;
+  --md-ref-neutral-variant-99: #fafdfd;
+  --md-ref-neutral-variant-100: #ffffff;
+}
+
+/* =========================================================================
+   LIGHT SCHEME (default) — M3 role mapping onto the ramps above
+   ========================================================================= */
+:root,
+[data-theme="light"] {
+  --color-primary: var(--md-ref-primary-40);
+  --color-on-primary: var(--md-ref-primary-100);
+  --color-primary-container: var(--md-ref-primary-90);
+  --color-on-primary-container: var(--md-ref-primary-10);
+
+  --color-secondary: var(--md-ref-secondary-40);
+  --color-on-secondary: var(--md-ref-secondary-100);
+  --color-secondary-container: var(--md-ref-secondary-90);
+  --color-on-secondary-container: var(--md-ref-secondary-10);
+
+  --color-tertiary: var(--md-ref-tertiary-50);
+  --color-on-tertiary: var(--md-ref-tertiary-100);
+  --color-tertiary-container: var(--md-ref-tertiary-90);
+  --color-on-tertiary-container: var(--md-ref-tertiary-20);
+
+  --color-error: var(--md-ref-error-40);
+  --color-on-error: var(--md-ref-error-100);
+  --color-error-container: var(--md-ref-error-90);
+  --color-on-error-container: var(--md-ref-error-10);
+
+  --color-background: var(--md-ref-neutral-96);
+  --color-on-background: var(--md-ref-neutral-10);
+
+  --color-surface: var(--md-ref-neutral-98);
+  --color-on-surface: var(--md-ref-neutral-10);
+  --color-surface-variant: var(--md-ref-neutral-variant-90);
+  --color-on-surface-variant: var(--md-ref-neutral-variant-30);
+
+  --color-surface-dim: var(--md-ref-neutral-87);
+  --color-surface-bright: var(--md-ref-neutral-98);
+  --color-surface-container-lowest: var(--md-ref-neutral-100);
+  --color-surface-container-low: var(--md-ref-neutral-96);
+  --color-surface-container: var(--md-ref-neutral-94);
+  --color-surface-container-high: var(--md-ref-neutral-92);
+  --color-surface-container-highest: var(--md-ref-neutral-90);
+
+  --color-outline: var(--md-ref-neutral-variant-50);
+  --color-outline-variant: var(--md-ref-neutral-variant-80);
+
+  --color-inverse-surface: var(--md-ref-neutral-20);
+  --color-inverse-on-surface: var(--md-ref-neutral-95);
+  --color-inverse-primary: var(--md-ref-primary-80);
+
+  --color-shadow: var(--md-ref-neutral-0);
+  --color-scrim: var(--md-ref-neutral-0);
+
+  /* Maritime status semantics (bridge alert convention: safe/caution/warning) */
+  --color-status-underway: #1c7a4a;
+  --color-status-underway-container: #d4f0e0;
+  --color-status-moored: var(--color-primary);
+  --color-status-moored-container: var(--color-primary-container);
+  --color-status-caution: #a97c2c;
+  --color-status-caution-container: #f5e7c8;
+  --color-status-warning: var(--color-error);
+  --color-status-warning-container: var(--color-error-container);
+}
+
+/* =========================================================================
+   DARK SCHEME — "Night Bridge": near-black, low-glare, red-shift-friendly
+   ========================================================================= */
+[data-theme="dark"] {
+  --color-primary: var(--md-ref-primary-80);
+  --color-on-primary: var(--md-ref-primary-20);
+  --color-primary-container: var(--md-ref-primary-30);
+  --color-on-primary-container: var(--md-ref-primary-90);
+
+  --color-secondary: var(--md-ref-secondary-80);
+  --color-on-secondary: var(--md-ref-secondary-20);
+  --color-secondary-container: var(--md-ref-secondary-30);
+  --color-on-secondary-container: var(--md-ref-secondary-90);
+
+  --color-tertiary: var(--md-ref-tertiary-70);
+  --color-on-tertiary: var(--md-ref-tertiary-20);
+  --color-tertiary-container: var(--md-ref-tertiary-30);
+  --color-on-tertiary-container: var(--md-ref-tertiary-90);
+
+  --color-error: var(--md-ref-error-80);
+  --color-on-error: var(--md-ref-error-20);
+  --color-error-container: var(--md-ref-error-30);
+  --color-on-error-container: var(--md-ref-error-90);
+
+  --color-background: var(--md-ref-neutral-6);
+  --color-on-background: var(--md-ref-neutral-90);
+
+  --color-surface: var(--md-ref-neutral-6);
+  --color-on-surface: var(--md-ref-neutral-90);
+  --color-surface-variant: var(--md-ref-neutral-variant-30);
+  --color-on-surface-variant: var(--md-ref-neutral-variant-80);
+
+  --color-surface-dim: var(--md-ref-neutral-6);
+  --color-surface-bright: var(--md-ref-neutral-24);
+  --color-surface-container-lowest: var(--md-ref-neutral-4);
+  --color-surface-container-low: var(--md-ref-neutral-10);
+  --color-surface-container: var(--md-ref-neutral-12);
+  --color-surface-container-high: var(--md-ref-neutral-17);
+  --color-surface-container-highest: var(--md-ref-neutral-22);
+
+  --color-outline: var(--md-ref-neutral-variant-60);
+  --color-outline-variant: var(--md-ref-neutral-variant-30);
+
+  --color-inverse-surface: var(--md-ref-neutral-90);
+  --color-inverse-on-surface: var(--md-ref-neutral-20);
+  --color-inverse-primary: var(--md-ref-primary-40);
+
+  --color-shadow: #000000;
+  --color-scrim: #000000;
+
+  --color-status-underway: #6fd39c;
+  --color-status-underway-container: #0f3a26;
+  --color-status-moored: var(--color-primary);
+  --color-status-moored-container: var(--color-primary-container);
+  --color-status-caution: #e9c47c;
+  --color-status-caution-container: #493100;
+  --color-status-warning: var(--color-error);
+  --color-status-warning-container: var(--color-error-container);
+}
