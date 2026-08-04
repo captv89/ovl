@@ -77,9 +77,9 @@ jobs:
           go-version-file: go.mod
 
       - name: Go SAST (gosec)
-        uses: securego/gosec-action@v2
-        with:
-          args: '-exclude-dir=tmp ./...'
+        run: |
+          go install github.com/securego/gosec/v2/cmd/gosec@latest
+          gosec -exclude-dir=tmp ./...
 
       - name: Secret scanning (gitleaks)
         uses: gitleaks/gitleaks-action@v2
