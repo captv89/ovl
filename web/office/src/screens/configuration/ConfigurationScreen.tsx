@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 
-import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate, useParams } from "react-router";
 import { Tabs } from "../../design/components/navigation/Tabs.jsx";
 import { FieldPolicyScreen } from "./FieldPolicyScreen";
 import { ProfilesAndBundlesScreen } from "./ProfilesAndBundlesScreen";

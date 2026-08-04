@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 
 import { useCallback, useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigate, useParams, useSearchParams } from "react-router";
 import { WizardShell } from "./screens/setup/WizardShell";
 import { ModeStep } from "./screens/setup/ModeStep";
 import { EnrollmentStep } from "./screens/setup/EnrollmentStep";

@@ -106,7 +106,7 @@ const configBundleColumns = `SELECT id, label, schema_versions, field_policies, 
 
 func scanConfigBundle(row rowScanner) (*configbundle.ConfigBundle, error) {
 	var (
-		b                                                                                              configbundle.ConfigBundle
+		b                                                                                               configbundle.ConfigBundle
 		schemaVersionsJSON, fieldPoliciesJSON, profilesJSON, cadenceJSON, ruleSeveritiesJSON, rolesJSON []byte
 	)
 	err := row.Scan(&b.ID, &b.Label, &schemaVersionsJSON, &fieldPoliciesJSON, &profilesJSON,

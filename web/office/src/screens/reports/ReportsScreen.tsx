@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 
-import { Route, Routes, useNavigate, useParams } from "react-router-dom";
+import { Route, Routes, useNavigate, useParams } from "react-router";
 import { ReportList } from "./ReportList";
 import { ReportDetailScreen } from "./ReportDetailScreen";
 import type { UserView } from "../../api/client";

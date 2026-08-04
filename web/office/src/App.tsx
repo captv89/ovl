@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 
 import { useCallback, useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigate } from "react-router";
 import { Login } from "./screens/Login";
 import { SetupAdmin } from "./screens/SetupAdmin";
 import { AppShell, type Section } from "./screens/AppShell";

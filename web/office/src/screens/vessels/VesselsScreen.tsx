@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 
 import { Suspense, lazy } from "react";
-import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate, useParams } from "react-router";
 import { Button } from "../../design/components/core/Button.jsx";
 import { api } from "../../api/client";
 import type { UserView } from "../../api/client";

@@ -98,7 +98,7 @@ func TestHandleListVesselPositions(t *testing.T) {
 
 	now := time.Now().UTC()
 	positionFields := map[string]any{
-		"IMO": float64(9074729),
+		"IMO":             float64(9074729),
 		"Latitude_Degree": 12.0, "Latitude_Minutes": 4.0, "Latitude_North_South": "N",
 		"Longitude_Degree": 43.0, "Longitude_Minutes": 55.0, "Longitude_East_West": "E",
 	}

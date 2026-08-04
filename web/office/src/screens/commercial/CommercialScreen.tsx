@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 
 import { useEffect, useState } from "react";
-import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate, useParams } from "react-router";
 import { DataTable } from "../../design/components/data/DataTable.jsx";
 import { AlertBanner } from "../../design/components/feedback/AlertBanner.jsx";
 import { Button } from "../../design/components/core/Button.jsx";
