@@ -70,5 +70,5 @@ func (s *Server) handleSaveSyncSettings(w http.ResponseWriter, r *http.Request) 
 		httpjson.WriteError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	httpjson.WriteJSON(w, http.StatusOK, syncSettingsView{SyncIntervalSeconds: req.SyncIntervalSeconds})
+	httpjson.WriteJSON(w, http.StatusOK, syncSettingsView(req))
 }

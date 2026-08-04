@@ -36,9 +36,9 @@ jobs:
           fi
       - name: test (race-enabled)
         run: go test ./... -race
-      - uses: golangci/golangci-lint-action@v6
+      - uses: golangci/golangci-lint-action@v9
         with:
-          version: v2.12
+          version: v2.12.2
 
   web:
     name: Web build (vessel + office)

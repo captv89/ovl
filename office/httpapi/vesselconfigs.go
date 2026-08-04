@@ -80,10 +80,10 @@ func (s *Server) handleListVesselConfigs(w http.ResponseWriter, r *http.Request)
 		if sync := s.syncStatusFor(r.Context(), v.ID); sync != nil {
 			appliedID = sync.AppliedBundleID
 		}
-		switch {
-		case appliedID == "":
+		switch appliedID {
+		case "":
 			view.Status = "pendingSync"
-		case appliedID == bundle.ID:
+		case bundle.ID:
 			view.Status = "synced"
 		default:
 			view.Status = "outOfDate"
