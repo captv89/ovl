@@ -4,11 +4,12 @@ go 1.26.3
 
 require (
 	connectrpc.com/connect v1.20.0
+	filippo.io/age v1.3.1
 	github.com/99designs/gqlgen v0.17.94
 	github.com/alexedwards/argon2id v1.0.0
 	github.com/google/uuid v1.6.0
 	github.com/jackc/pgx/v5 v5.10.0
-	github.com/klauspost/compress v1.19.0
+	github.com/klauspost/compress v1.19.1
 	github.com/pressly/goose/v3 v3.27.2
 	github.com/santhosh-tekuri/jsonschema/v6 v6.0.2
 	github.com/vektah/gqlparser/v2 v2.5.36
@@ -17,7 +18,6 @@ require (
 )
 
 require (
-	filippo.io/age v1.3.1 // indirect
 	filippo.io/hpke v0.4.0 // indirect
 	github.com/agnivade/levenshtein v1.2.1 // indirect
 	github.com/coder/websocket v1.8.15 // indirect
