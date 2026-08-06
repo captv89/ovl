@@ -59,10 +59,47 @@ type setupModeRequest struct {
 	DataDir string         `json:"dataDir"`
 }
 
+// setupAlreadyComplete reports whether a Master account already exists,
+// writing a 500 and returning ok=false if that can't be determined (a
+// gate this security-critical must fail closed on an unknown answer, not
+// fall through to the permissive pre-Master path the way treating a read
+// error as "no Master yet" would). The pre-Master wizard steps (mode/
+// data-directory, enrollment) predate any authentication existing at all
+// — there's no Master yet to require a session from — but that only
+// holds up to the moment one is created; each caller decides for itself
+// what "already complete" means once this is true (handleSetupMode
+// refuses outright, handleSetupEnrollment falls back to requiring a
+// Master session). storeOrNil is used (not requireStore) because "no
+// store yet" is the ordinary pre-setup state, not an error, here.
+func (s *Server) setupAlreadyComplete(w http.ResponseWriter, r *http.Request) (complete, ok bool) {
+	st := s.storeOrNil()
+	if st == nil {
+		return false, true
+	}
+	hasMaster, err := st.HasAnyUser(r.Context())
+	if err != nil {
+		httpjson.WriteError(w, http.StatusInternalServerError, err.Error())
+		return false, false
+	}
+	return hasMaster, true
+}
+
 // handleSetupMode is wizard step 1 (architecture 9.2: "Choose mode ...
 // and data directory"). It opens (or creates) the SQLite store at
-// DataDir to prove it's usable before persisting the choice.
+// DataDir to prove it's usable before persisting the choice. Refuses
+// outright once a Master exists — unlike handleSetupEnrollment, nothing
+// legitimately re-runs this step post-setup, so leaving it open would let
+// anyone reachable on the listener re-point a live vessel's data
+// directory indefinitely.
 func (s *Server) handleSetupMode(w http.ResponseWriter, r *http.Request) {
+	complete, ok := s.setupAlreadyComplete(w, r)
+	if !ok {
+		return
+	}
+	if complete {
+		httpjson.WriteError(w, http.StatusConflict, "a user already exists; use the login screen instead")
+		return
+	}
 	var req setupModeRequest
 	if err := httpjson.DecodeJSON(r, &req); err != nil {
 		httpjson.WriteError(w, http.StatusBadRequest, "invalid request body")
@@ -115,6 +152,23 @@ type setupEnrollmentRequest struct {
 // (design handoff A1: "Offline install (enrollment deferred) must be
 // possible") and bypasses all of this.
 func (s *Server) handleSetupEnrollment(w http.ResponseWriter, r *http.Request) {
+	// Unlike handleSetupMode, this endpoint is legitimately called again
+	// after a Master exists (Settings' re-enroll action, e.g. after a
+	// revoked credential) — so it can't simply refuse once setup is
+	// complete the way handleSetupMode does. Instead: wide open pre-Master
+	// (there's no session to require yet, same as the rest of the wizard),
+	// Master-only once one exists — otherwise any unauthenticated caller
+	// could indefinitely re-point a live vessel's sync credential at an
+	// arbitrary office URL of their choosing.
+	complete, ok := s.setupAlreadyComplete(w, r)
+	if !ok {
+		return
+	}
+	if complete {
+		if _, ok := s.requireSuperAdmin(w, r); !ok {
+			return
+		}
+	}
 	cfg := s.config()
 	if !cfg.Configured() {
 		httpjson.WriteError(w, http.StatusBadRequest, "complete mode/data-directory setup first")

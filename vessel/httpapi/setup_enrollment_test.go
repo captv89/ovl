@@ -126,3 +126,80 @@ func TestHandleSetupEnrollment_RequiresModeFirst_NonSkip(t *testing.T) {
 		t.Errorf("status = %d, want %d (mode/data-directory setup not done yet)", rec.Code, http.StatusBadRequest)
 	}
 }
+
+// TestSetupAlreadyComplete_FailsClosedOnStoreError guards the security
+// fix itself: setupAlreadyComplete must never let a HasAnyUser error
+// (e.g. a canceled request context, or any other transient store fault)
+// read as "no Master yet" — that would reopen handleSetupMode/
+// handleSetupEnrollment's unauthenticated pre-Master path on an
+// already-provisioned vessel. Closing the store's DB handle directly is
+// the simplest reliable way to force HasAnyUser to error in a test.
+func TestSetupAlreadyComplete_FailsClosedOnStoreError(t *testing.T) {
+	s, _ := newLoggedInTestServer(t)
+	if err := s.storeOrNil().Close(); err != nil {
+		t.Fatalf("close store: %v", err)
+	}
+	anon := newTestClient(t, s) // no session cookie
+	rec := anon.do(http.MethodPost, "/api/setup/mode", setupModeRequest{Mode: bootstrap.ModeStandalone, DataDir: filepath.Join(t.TempDir(), "elsewhere")})
+	if rec.Code != http.StatusInternalServerError {
+		t.Fatalf("status = %d, body %s, want %d (must fail closed, not fall through to the pre-Master path)", rec.Code, rec.Body, http.StatusInternalServerError)
+	}
+}
+
+// TestHandleSetupMode_RefusesOnceMasterExists guards against an
+// unauthenticated caller re-pointing an already-provisioned vessel's data
+// directory: unlike enrollment, nothing legitimately re-runs this step
+// after setup, so it must refuse outright once a Master account exists.
+func TestHandleSetupMode_RefusesOnceMasterExists(t *testing.T) {
+	s, _ := newLoggedInTestServer(t)
+	anon := newTestClient(t, s) // no session cookie
+	rec := anon.do(http.MethodPost, "/api/setup/mode", setupModeRequest{Mode: bootstrap.ModeStandalone, DataDir: filepath.Join(t.TempDir(), "elsewhere")})
+	if rec.Code != http.StatusConflict {
+		t.Fatalf("status = %d, body %s, want %d", rec.Code, rec.Body, http.StatusConflict)
+	}
+}
+
+// TestHandleSetupEnrollment_AnonymousRefusedOnceMasterExists is the
+// enrollment-endpoint counterpart: once a Master exists, re-enrolling
+// against an arbitrary office URL must require an authenticated Master
+// session, not remain wide open the way the pre-Master wizard step is.
+func TestHandleSetupEnrollment_AnonymousRefusedOnceMasterExists(t *testing.T) {
+	s, _ := newLoggedInTestServer(t)
+	anon := newTestClient(t, s) // no session cookie
+	rec := anon.do(http.MethodPost, "/api/setup/enrollment", setupEnrollmentRequest{OfficeURL: "https://office.example.com", Code: "SOME-CODE"})
+	if rec.Code != http.StatusUnauthorized {
+		t.Fatalf("status = %d, body %s, want %d", rec.Code, rec.Body, http.StatusUnauthorized)
+	}
+}
+
+// TestHandleSetupEnrollment_MasterCanReEnroll confirms the guard doesn't
+// break the legitimate case newLoggedInTestServer's own doc comment and
+// sync_test.go rely on: an authenticated Master re-enrolling post-setup.
+func TestHandleSetupEnrollment_MasterCanReEnroll(t *testing.T) {
+	office := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/api/enroll" {
+			w.WriteHeader(http.StatusNotFound)
+			return
+		}
+		w.Header().Set("Content-Type", "application/json")
+		_ = json.NewEncoder(w).Encode(map[string]string{
+			"credential": "re-enrolled-token",
+			"vesselName": "MV Testship",
+			"vesselIMO":  "9074729",
+		})
+	}))
+	defer office.Close()
+
+	s, c := newLoggedInTestServer(t) // c already holds a Master session cookie
+	rec := c.do(http.MethodPost, "/api/setup/enrollment", setupEnrollmentRequest{OfficeURL: office.URL, Code: "THE-CODE"})
+	if rec.Code != http.StatusOK {
+		t.Fatalf("POST /api/setup/enrollment: status %d, body %s", rec.Code, rec.Body)
+	}
+	cred, err := s.storeOrNil().GetSyncCredential(t.Context())
+	if err != nil {
+		t.Fatalf("GetSyncCredential: %v", err)
+	}
+	if cred.Token != "re-enrolled-token" {
+		t.Errorf("stored credential token = %q, want %q", cred.Token, "re-enrolled-token")
+	}
+}
