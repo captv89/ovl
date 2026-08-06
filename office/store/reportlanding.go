@@ -110,9 +110,8 @@ func (s *Store) AppendReportAuditEvent(ctx context.Context, vesselID string, e d
 // integration (DNV declined API access) — office's data egress is now
 // pull-based (external customers query via API key + GraphQL/CSV), which
 // has no equivalent "push" step that can fail, so this filter has no
-// future version to build either. See PROJECT.md's decisions log,
-// 2026-07-12 and 2026-07-16, rather than adding an inert filter field
-// now. HasRemarks was in that same deferred state
+// future version to build either, rather than adding an inert filter
+// field now. HasRemarks was in that same deferred state
 // until Slice S5 landed the remarks table it depends on; wired here in
 // Slice S6 (T6.2).
 type ReportFilter struct {

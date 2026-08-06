@@ -11,8 +11,8 @@
 -- ordered sequence for free.
 --
 -- schema_versions.cursor backs a global stream (every vessel eventually
--- receives every published version, Phase 4 decision, PROJECT.md
--- 2026-07-11's decisions log) — config_bundles.cursor backs a
+-- receives every published version, Phase 4 decision) —
+-- config_bundles.cursor backs a
 -- per-vessel "is the currently-assigned bundle newer than what I have"
 -- comparison (architecture 6.5: "the vessel pulls the newest assigned
 -- bundle"), resolved via office/configbundle.Resolve, not a list stream

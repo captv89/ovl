@@ -2,8 +2,8 @@
 
 -- users holds local office accounts (architecture 12.2). This is a
 -- local stand-in pending real OIDC integration (Keycloak or Authentik,
--- broker-federated to whichever IdP a deployment's own company uses) —
--- see PROJECT.md's Phase 3 decisions log. roles is JSONB (a small array
+-- broker-federated to whichever IdP a deployment's own company uses).
+-- roles is JSONB (a small array
 -- of role-name
 -- strings) rather than a native TEXT[] column or a join table: the role
 -- set is fixed and small (office/auth.AllRoles, 5 values), and JSONB

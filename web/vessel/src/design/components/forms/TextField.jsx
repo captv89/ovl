@@ -6,8 +6,8 @@ import { FieldShell, fieldFrameStyle } from "./FieldShell.jsx";
 
 /**
  * TextField — label-above text input on FieldShell (OVL Vessel
- * Wireframes anatomy — see PROJECT.md's "Vessel UI rework" section for
- * why this replaced the earlier Material-3 floating-label version).
+ * Wireframes anatomy, replacing the earlier Material-3 floating-label
+ * version).
  * Supports `type="password"` with a visibility toggle rendered into
  * FieldShell's `suffix` slot, in addition to the default text input.
  * `suffix` renders arbitrary content after the input (a plain unit span,

@@ -11,8 +11,8 @@ import (
 )
 
 // systemView is design handoff B10's System tab. Real values only — no
-// job-queue/background-worker health, since River isn't wired yet (see
-// PROJECT.md's Phase 4-6 status); a fake "queue: healthy" reading would
+// job-queue/background-worker health, since River isn't wired yet
+// (deferred to a later phase); a fake "queue: healthy" reading would
 // be actively misleading once a real queue does exist and this screen
 // hasn't been revisited to show it honestly.
 type systemView struct {

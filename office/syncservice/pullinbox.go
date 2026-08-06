@@ -19,8 +19,7 @@ import (
 
 // PullInbox delivers config bundles and schema versions newer than the
 // calling vessel's cursors (architecture 11.2 step 3). Two different
-// pull models, per the Phase 4 decision (PROJECT.md 2026-07-11's
-// decisions log, confirmed with the user):
+// pull models, per the Phase 4 decision:
 //
 //   - schema_versions is a global stream: every published version with
 //     cursor > the vessel's schema_version_cursor, in cursor order. Not

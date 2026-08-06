@@ -23,7 +23,7 @@ type acknowledgeFindingRequest struct {
 // handleAcknowledgeFinding records a warning acknowledgement (design
 // handoff A6's Acknowledge button) as a real audit-logged, office-synced
 // event instead of client-local UI state — the vessel UI rework's Phase
-// 3 (see PROJECT.md). Reuses the existing AppendEvent/
+// 3. Reuses the existing AppendEvent/
 // EnqueueReportAuditEvent path every other audit event already takes
 // (no new sync primitive), enqueued immediately like chat messages
 // rather than gated to submit-time like most report events, since an

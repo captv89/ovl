@@ -35,9 +35,9 @@ interface HealthCheckPanelProps {
 }
 
 // The post-"Check report" review content, extended into FormWizard's own
-// footer panel (via its `panel` prop) rather than a separate A6 screen —
-// see PROJECT.md's "Vessel UI rework" section for why. Errors are the
-// only thing that reads as blocking here — everything else (warnings,
+// footer panel (via its `panel` prop) rather than a separate A6 screen.
+// Errors are the only thing that reads as blocking here — everything
+// else (warnings,
 // regulatory readiness, continuity impact) is informational, so only the
 // errors card gets the bordered/red treatment; the rest is plain list
 // rhythm on the surface, distinguished by icon+text rather than competing

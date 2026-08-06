@@ -2,8 +2,7 @@
 
 // Package syncservice is ovl-office's ConnectRPC handler for
 // architecture 11's SyncService (proto/ovl/sync/v1/sync.proto). Built
-// incrementally across Phase 4 (see PROJECT.md's 2026-07-11 decisions
-// log for the step sequencing) — SyncStatus, PushOutbox, PullInbox, and
+// incrementally across Phase 4 — SyncStatus, PushOutbox, PullInbox, and
 // the attachment chunk-upload pair are implemented; ChatMessage payloads
 // within PushOutbox are accepted-and-acked plumbing only (Phase 5).
 package syncservice

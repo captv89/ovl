@@ -170,7 +170,7 @@ var ErrCodeNotFound = errors.New("enrollment: code not recognized")
 //
 // candidates should be every enrollment currently in StateIssued — the
 // redemption code is globally unique and self-identifying (Phase 4
-// decision, PROJECT.md 2026-07-11's decisions log), so the caller has no
+// decision), so the caller has no
 // vessel id to look up by directly, only the code itself. A linear
 // argon2id scan is deliberate here: redemption is a one-time,
 // human-driven bootstrap action bounded by fleet size, not a repeating

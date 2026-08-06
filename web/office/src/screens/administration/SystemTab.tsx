@@ -18,8 +18,8 @@ function formatBytes(bytes: number): string {
 // of Dashboard's own KPI-tile widget, plus an explicit, honestly-worded
 // row for the one subsystem this office instance genuinely has no
 // signal for. Still real values only: no job-queue/background-worker
-// health, since River isn't wired yet (PROJECT.md's Phase 4-6 status) —
-// StatusRow's own "not wired yet" tone makes that gap visible rather
+// health, since River isn't wired yet — StatusRow's own "not wired
+// yet" tone makes that gap visible rather
 // than silently omitting the row, which used to read as "forgotten"
 // rather than "not built."
 export function SystemTab() {

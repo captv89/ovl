@@ -1,6 +1,4 @@
-# CI (Phase 1). Written ahead of pushing a GitHub remote — see
-# PROJECT.md's decisions log — so it will not actually run until this
-# repo is pushed and these triggers start firing.
+# CI (Phase 1).
 #
 # Schema meta-schema validation isn't a separate step: it's already
 # exercised by `go test ./...` via pkg/schema's

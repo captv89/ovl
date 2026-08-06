@@ -9,10 +9,9 @@
 --
 -- content is BYTEA, not JSONB: Postgres's JSONB type re-serializes
 -- documents (whitespace/key-order are not preserved), which would break
--- the "carrying the exact JSON... verbatim" choice PROJECT.md's
--- 2026-07-04 decisions log already made for syncproto's
--- ConfigBundle.content_json/SchemaVersion.schema_json — the same
--- verbatim-bytes reasoning applies here.
+-- the "carrying the exact JSON... verbatim" choice already made for
+-- syncproto's ConfigBundle.content_json/SchemaVersion.schema_json — the
+-- same verbatim-bytes reasoning applies here.
 --
 -- UNIQUE(schema_name, version) is the real-world identity: architecture
 -- 5.2 names schema versions by exactly this pair ("3.13",

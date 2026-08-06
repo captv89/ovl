@@ -65,8 +65,7 @@ func (s *Store) GetEnrollment(ctx context.Context, vesselID string) (*enrollment
 // ListIssuedEnrollments returns every enrollment currently in
 // StateIssued — the candidate set office/enrollment.Redeem scans against
 // when a vessel presents a one-time code with no vessel id attached
-// (codes are globally unique and self-identifying, Phase 4 decision,
-// PROJECT.md 2026-07-11's decisions log).
+// (codes are globally unique and self-identifying, Phase 4 decision).
 func (s *Store) ListIssuedEnrollments(ctx context.Context) ([]*enrollment.Enrollment, error) {
 	rows, err := s.db.QueryContext(ctx, `
 		SELECT vessel_id, state, code_hash, initial_master_username, initial_master_password_hash, dr_public_key, issued_at, revoked_at, updated_at

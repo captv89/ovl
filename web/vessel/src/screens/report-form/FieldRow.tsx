@@ -106,11 +106,10 @@ const chipStyle = (amber: boolean): CSSProperties => ({
 //   the ability to get back to the calculated answer; only its color
 //   flags "this no longer matches its calculated value" (amber), not its
 //   shape (an earlier version swapped icons on override and silently
-//   removed the only way back — see PROJECT.md decisions log,
-//   2026-07-05). Reinstated as a wireframe-matching chip on 2026-07-12
-//   (also PROJECT.md, "Vessel UI rework" section) after having been
-//   simplified to a lone icon in that same 2026-07-05 pass — a recorded
-//   reversal, not new scope.
+//   removed the only way back, 2026-07-05). Reinstated as a
+//   wireframe-matching chip on 2026-07-12 after having been simplified
+//   to a lone icon in that same 2026-07-05 pass — a recorded reversal,
+//   not new scope.
 // - ghost: previous report's value shown as the input's own placeholder
 //   when the field is empty, never auto-filled.
 // - none / unset: no treatment.

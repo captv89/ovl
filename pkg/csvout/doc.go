@@ -10,5 +10,5 @@
 // Veracity-specific itself and needed no changes). Now one of two data-
 // egress paths external customers use: a bulk/compliance-style download,
 // alongside the API-key-gated GraphQL endpoint for flexible per-field,
-// per-time-period queries. See PROJECT.md's Phase 6 section.
+// per-time-period queries.
 package csvout

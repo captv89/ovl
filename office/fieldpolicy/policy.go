@@ -28,9 +28,8 @@ import (
 
 // PrefillClass is the company-assigned prefill treatment for a field
 // (architecture 6.4). The curated schema JSON carries no prefillClass
-// property of its own (confirmed during the Phase 2 form-engine work —
-// see PROJECT.md's 2026-07-05 decisions log entry), so this is
-// office-authored config-bundle data, not schema data, and lives here
+// property of its own (confirmed during the Phase 2 form-engine work),
+// so this is office-authored config-bundle data, not schema data, and lives here
 // rather than in pkg/schema.
 type PrefillClass string
 

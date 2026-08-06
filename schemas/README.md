@@ -5,8 +5,8 @@ schema document in this repository, and every schema uploaded through the
 office UI (architecture handoff section 5.2). It currently defines 8
 field types (`text`, `wholeNumber`, `decimal`, `date`, `time`, `dateTime`,
 `boolean`, `enum`) — `dateTime` and `boolean` were added beyond the
-architecture doc's original 6 to match real OVD 3.13 data (see
-`PROJECT.md`'s decisions log) — plus an optional `unsupportedByDnv` field
+architecture doc's original 6 to match real OVD 3.13 data — plus an
+optional `unsupportedByDnv` field
 property. Validation is not yet wired into CI (no CI pipeline exists
 yet); it has been checked with a one-off script instead.
 
@@ -16,9 +16,7 @@ Cargo Nomination — 22) plus their shared `enums/` (event types, fuel
 types, port call purposes, incoterms, charter types, offshore modes).
 Authored from `handoff/OVD 3.13 interface description.xlsx` via a one-off
 extraction script (not committed — an assisted xlsx importer is
-explicitly out of scope for v1, see architecture section 18). See
-`PROJECT.md` for the curation approach and known residual label
-imperfections.
+explicitly out of scope for v1, see architecture section 18).
 
 `ovd-3.13/event-suggestions/event-types.json` is the next-event
 suggestion state machine (architecture 9.4): for every one of the 33

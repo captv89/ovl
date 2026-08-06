@@ -25,7 +25,7 @@ import (
 // subdirectory of the vessel's own data directory, not a separately
 // configured "second path" (design handoff A10 mentions a configurable
 // target, but there is no settings screen or config-bundle mechanism yet
-// to hold that setting; documented simplification, see PROJECT.md).
+// to hold that setting; a documented simplification).
 // Each snapshot gets its own timestamped folder containing ovl.db and,
 // if any exist, a copy of the attachment store.
 func backupsDir(dataDir string) string {
@@ -36,9 +36,9 @@ func backupsDir(dataDir string) string {
 // store lives (architecture 15): Bunker/EDN report attachments captured
 // locally, read from here by Phase 4's chunk-upload sync path to push
 // to the office (see vessel/sync's attachment phase). Local capture
-// itself (the upload UI, client-side image downscaling) is not built —
-// see PROJECT.md. Backup checks for and copies this directory
-// regardless, so DR needs no revisiting once capture lands.
+// itself (the upload UI, client-side image downscaling) is not built yet.
+// Backup checks for and copies this directory regardless, so DR needs no
+// revisiting once capture lands.
 func attachmentsDir(dataDir string) string {
 	return filepath.Join(dataDir, "attachments")
 }

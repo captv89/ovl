@@ -58,8 +58,7 @@ func (r *Report) MarkReady(findings validation.Findings) (Event, error) {
 // correction) emits EventResubmitted instead of EventSubmitted — this
 // matches the frontend's existing resubmitted-badge heuristic
 // (versionNo > 1) rather than requiring a narrower "resubmitted only
-// after a remark" signal the domain doesn't track (see PROJECT.md's
-// Phase 5 open question 1).
+// after a remark" signal the domain doesn't track.
 func (r *Report) Submit(actor string) (Event, error) {
 	if r.State != StateReady {
 		return Event{}, fmt.Errorf("cannot submit from state %q, must be %q", r.State, StateReady)
@@ -122,8 +121,7 @@ func (r *Report) MarkSynced(at time.Time) (Event, bool) {
 // same transition locally from a synced Remark, passes that Remark's
 // own CreatedAt instead of its own pull-time now — otherwise the
 // vessel's audit trail would show whenever it happened to sync next,
-// not when the reviewer actually acted (see PROJECT.md's audit-trail
-// sync fix, manual-test review item 9).
+// not when the reviewer actually acted (manual-test review item 9).
 func (r *Report) MarkRemarked(fields []string, actor string, at time.Time) (Event, error) {
 	switch r.State {
 	case StateDraft, StateReady:

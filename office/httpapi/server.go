@@ -2,7 +2,7 @@
 
 // Package httpapi is ovl-office's HTTP surface: a health endpoint, the
 // local-account login/session surface (architecture 12.2's stand-in
-// pending real OIDC — see PROJECT.md's Phase 3 decisions log), the
+// pending real OIDC), the
 // enrollment/config-authoring/bundle-publishing API surface, the vessel
 // enrollment-code redemption endpoint (POST /api/enroll, Phase 4's sync
 // handshake — see office/enrollment.Redeem and office/synccred), the

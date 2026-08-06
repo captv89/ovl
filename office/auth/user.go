@@ -3,8 +3,8 @@
 // Package auth models ovl-office's local accounts and the five
 // combinable office roles (architecture 12.2). This is a local stand-in
 // pending real OIDC integration (Keycloak or Authentik, broker-federated
-// to whichever IdP a deployment's own company uses) — see PROJECT.md's
-// Phase 3 decisions log for why that's deferred rather than built now.
+// to whichever IdP a deployment's own company uses) — deferred rather
+// than built now.
 // (An earlier version of this comment tied deferral to "Veracity
 // federated as a conditional SSO source" — that idea is dead now that
 // DNV has declined Veracity API access entirely, and OIDC was never

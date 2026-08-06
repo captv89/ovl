@@ -195,15 +195,15 @@ var logAbstractFuelTypes = []struct {
 // BDN-linked one (ME_Consumption/_BDN_2../3/4, IGG_Consumption,
 // GCU_Consumption, DPP_Consumption, Incinerator_Consumption) — real-world
 // OVD reporting practice treats BDN-based consumption as the uncommon
-// path (see PROJECT.md's domain-knowledge note), so fuel-type is the one
-// worth getting exactly right first. A report using the BDN scheme
-// instead simply leaves these fields empty; EvaluateROBContinuity already
-// no-ops any series whose ROB field is missing from either report being
-// compared, so this isn't a silent gap for BDN-scheme reports — it's an
-// explicit, documented scope boundary, same treatment as the deprecated
-// sulphur-content ROB fields (HFO_HS_ROB etc., "deprecated since
-// interface version 3.3" per the schema's own field descriptions) and the
-// non-fuel ROB fields (Fresh_Water_ROB, Sludge_ROB, cylinder/system oil)
+// path, so fuel-type is the one worth getting exactly right first. A
+// report using the BDN scheme instead simply leaves these fields empty;
+// EvaluateROBContinuity already no-ops any series whose ROB field is
+// missing from either report being compared, so this isn't a silent gap
+// for BDN-scheme reports — it's an explicit, documented scope boundary,
+// same treatment as the deprecated sulphur-content ROB fields
+// (HFO_HS_ROB etc., "deprecated since interface version 3.3" per the
+// schema's own field descriptions) and the non-fuel ROB fields
+// (Fresh_Water_ROB, Sludge_ROB, cylinder/system oil)
 // — those need a genuinely different replenishment model (production vs.
 // consumption, or "topped up" rather than "bunkered"), not a bug fix of
 // this list, and weren't asked for.

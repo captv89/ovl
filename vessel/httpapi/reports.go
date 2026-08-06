@@ -351,8 +351,7 @@ type saveSectionRequest struct {
 // handleSaveSection applies field changes to a report still in
 // draft/ready (architecture 9.5: "section saves are independent
 // writes"). Rejected once the report is locked post-submit — the caller
-// must start a correction first (a separate, not-yet-exposed endpoint;
-// see PROJECT.md).
+// must start a correction first (a separate, not-yet-exposed endpoint).
 func (s *Server) handleSaveSection(w http.ResponseWriter, r *http.Request) {
 	st, ok := s.requireStore(w)
 	if !ok {

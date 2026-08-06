@@ -5,7 +5,7 @@ import type { FieldPolicyState, SchemaField } from "../../api/client";
 // CLAUDE.md is explicit: "All timestamps stored and exchanged in UTC. No
 // local time anywhere in data entry." This is a standing project rule, not
 // something the backend's placeholder field-policy config (a Phase 3
-// stand-in, see PROJECT.md) should be trusted to enforce — so it's a hard
+// stand-in) should be trusted to enforce — so it's a hard
 // frontend override, ahead of schema-mandatory, rather than a policy entry
 // that could be silently left out of some future config bundle.
 function isLocalTimeField(field: SchemaField): boolean {

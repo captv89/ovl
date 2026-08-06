@@ -242,8 +242,8 @@ export function ReportForm({
   const [actionError, setActionError] = useState<string | null>(null);
   const [highlight, setHighlight] = useState<{ field: string; nonce: number } | null>(null);
   // "Check report" expands FormWizard's own footer panel with the full
-  // review (HealthCheckPanel) instead of navigating to a separate screen
-  // (see PROJECT.md's "Vessel UI rework" section), and gates the
+  // review (HealthCheckPanel) instead of navigating to a separate screen,
+  // and gates the
   // RULE_FIELD_REQUIRED filter on the live-validate effect below — the
   // red/amber error/warning findings a Check surfaces, not the
   // mandatory/GHG-relevant policyOutline border itself (that border is

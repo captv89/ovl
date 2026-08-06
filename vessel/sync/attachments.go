@@ -49,12 +49,12 @@ func (c *Client) UploadAttachmentChunk(ctx context.Context, contentHash string, 
 //
 // Nothing in vessel/httpapi.RunSyncCycle calls this automatically yet:
 // report fields have no attachment-reference concept in this codebase
-// (no local capture/upload UI exists — see PROJECT.md's Phase 4 Step 5
-// notes), so there is nothing for an automatic outbox scan to discover
-// and call this for. This method is built and fully tested as a
-// standalone, reusable piece — office/syncservice's own tests cover the
-// server-side resumability/dedup/corruption-rejection contract this
-// relies on — ready for whenever attachment capture lands.
+// (no local capture/upload UI exists yet), so there is nothing for an
+// automatic outbox scan to discover and call this for. This method is
+// built and fully tested as a standalone, reusable piece —
+// office/syncservice's own tests cover the server-side
+// resumability/dedup/corruption-rejection contract this relies on —
+// ready for whenever attachment capture lands.
 func (c *Client) UploadAttachment(ctx context.Context, store *attachmentstore.Store, meta *syncv1.AttachmentMeta) error {
 	queryResp, err := c.QueryMissingAttachmentChunks(ctx, meta)
 	if err != nil {

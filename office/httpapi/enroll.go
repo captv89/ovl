@@ -31,9 +31,9 @@ type redeemEnrollmentResponse struct {
 // sync credential. Deliberately not session/cookie authenticated like
 // every other office/httpapi handler — the vessel has no office account,
 // only the code — and deliberately a plain endpoint rather than a
-// SyncService RPC (Phase 4 decision, PROJECT.md 2026-07-11's decisions
-// log): this keeps SyncService uniformly credential-gated with no
-// auth-exception carve-out, and leaves the frozen sync.proto untouched.
+// SyncService RPC (Phase 4 decision): this keeps SyncService uniformly
+// credential-gated with no auth-exception carve-out, and leaves the
+// frozen sync.proto untouched.
 //
 // The request carries only the code, no vessel id — codes are globally
 // unique and self-identifying (same decision), so office/enrollment.Redeem

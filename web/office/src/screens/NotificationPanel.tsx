@@ -41,8 +41,8 @@ function matchesFilter(n: NotificationView, filter: Filter): boolean {
 // Dashboard's "View all" links use, not to the specific vessel/report —
 // opening one specific record from outside that screen's own internal
 // navigation state would need a real router or a larger lift of
-// navigation state into App.tsx, out of scope for this pass (see
-// PROJECT.md's Office UI rework, Phase O6). There is also no separate
+// navigation state into App.tsx, out of scope for this pass. There is
+// also no separate
 // "View all notifications" full-history screen — this panel's own list
 // (capped server-side at 50, most-recent-first) is the whole surface
 // for now.

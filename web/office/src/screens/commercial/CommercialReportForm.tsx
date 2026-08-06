@@ -49,8 +49,8 @@ function nativeInputType(field: SchemaField): "text" | "number" | "date" | "time
     case "dateTime":
       return "datetime-local";
     // enum has no office-side /api/enums/{name} endpoint the way vessel
-    // does (design handoff B8, v1 scope cut, see PROJECT.md) — falls
-    // through to a plain text field like everything else untyped.
+    // does (design handoff B8, v1 scope cut) — falls through to a
+    // plain text field like everything else untyped.
     default:
       return "text";
   }

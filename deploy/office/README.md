@@ -6,9 +6,8 @@ section 12.1.
 `docker-compose.yml` defines two services: `postgres` (always) and
 `office` (behind the `full` profile — see below). An OIDC provider
 (Keycloak or Authentik — either is spec-compliant per the architecture
-doc) is deferred until the office-roles/auth checklist item; see
-PROJECT.md's Phase 3 decisions log for why. The API-key-gated GraphQL/CSV
-data API (Phase 6, `PROJECT.md`) is a separate, already-built auth
+doc) is deferred until the office-roles/auth checklist item. The
+API-key-gated GraphQL/CSV data API is a separate, already-built auth
 surface, not OIDC.
 
 ## Local development

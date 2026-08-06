@@ -400,8 +400,7 @@ function RecentReportsTable({ reports, onOpen }: { reports: ReportView[]; onOpen
 // Architecture 11/design handoff A3 item 6. Sync itself has existed
 // since Phase 4 (vessel/httpapi's GET /api/sync/status, POST
 // /api/sync/now) — this was left as an honest inert stub until now
-// because the frontend never actually called those endpoints (see
-// PROJECT.md's "Vessel UI rework" section).
+// because the frontend never actually called those endpoints.
 function SyncStatusFooter() {
   const [status, setStatus] = useState<SyncStatus | null>(null);
   const [syncing, setSyncing] = useState(false);

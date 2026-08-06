@@ -41,9 +41,8 @@ enum ReportLifecycleState {
 // Audit trail event types. Values 1-11 are architecture handoff section
 // 14's own vocabulary, verbatim. Value 12 (FINDING_ACKNOWLEDGED) is a
 // later addition, not in that original list — added per an explicit
-// requirement from the vessel UI rework (see PROJECT.md's "Vessel UI
-// rework" section, Phase 3): warning acknowledgements must be
-// audit-logged and synced to office, not just client-local UI state.
+// requirement from the vessel UI rework: warning acknowledgements must
+// be audit-logged and synced to office, not just client-local UI state.
 enum AuditEventType {
   AUDIT_EVENT_TYPE_UNSPECIFIED = 0;
   AUDIT_EVENT_TYPE_CREATED = 1;

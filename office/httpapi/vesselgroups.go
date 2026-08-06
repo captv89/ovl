@@ -10,10 +10,10 @@ import (
 )
 
 // Vessel groups are free-form JSONB tags on vessels.groups (architecture
-// 12.4), not a first-class entity — see PROJECT.md's Office UI rework
-// plan for why this phase deliberately doesn't introduce a redundant
-// vessel_groups table. Rename/delete below are layered directly on that
-// existing model: load every vessel currently carrying the tag, mutate
+// 12.4), not a first-class entity — this phase deliberately doesn't
+// introduce a redundant vessel_groups table. Rename/delete below are
+// layered directly on that existing model: load every vessel currently
+// carrying the tag, mutate
 // each one's Groups in place via the same Vessel.UpdateProfile every
 // other profile edit already uses, and persist one vessel at a time
 // (not one cross-table transaction) — an acceptable failure mode for a

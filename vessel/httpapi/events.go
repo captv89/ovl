@@ -19,8 +19,8 @@ type eventTypeView struct {
 // handleListEventTypes serves the full OVD event-type enum (design handoff
 // A3's "Other event…" full list, and the "event-types" enumRef the curated
 // Event field points to — general enumRef resolution for arbitrary fields
-// isn't built, see PROJECT.md; this endpoint is scoped to event types
-// specifically since that's what A3 needs).
+// isn't built yet; this endpoint is scoped to event types specifically
+// since that's what A3 needs).
 func (s *Server) handleListEventTypes(w http.ResponseWriter, r *http.Request) {
 	if _, ok := s.authenticatedUser(w, r); !ok {
 		return

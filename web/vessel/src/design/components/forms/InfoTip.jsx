@@ -10,8 +10,7 @@ import { Tooltip } from "../feedback/Tooltip.jsx";
  * across the field primitives: this is reachable regardless of whether
  * the field has a value or is focused — the old pattern only worked once
  * a label had floated, which made an empty, unfocused field's own
- * description unreachable (see PROJECT.md's "Vessel UI rework" section
- * for why that pattern was dropped).
+ * description unreachable, so that pattern was dropped.
  */
 export function InfoTip({ label, maxWidth = 220 }) {
   return (

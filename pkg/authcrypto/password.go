@@ -2,13 +2,12 @@
 
 // Package authcrypto is the shared password-hashing primitive for both
 // ovl-vessel's local accounts (architecture 9.3) and ovl-office's local
-// stand-in accounts (architecture 12.2, pending real OIDC integration —
-// see PROJECT.md's Phase 3 decisions log). Extracted from vessel/auth
-// rather than duplicated when office/auth needed the identical logic:
-// password hashing is security-sensitive code where two copies risk
-// silently drifting apart, unlike the generic per-binary infrastructure
-// (e.g. each app's own SPA-serving handler) that's deliberately kept
-// separate elsewhere in this repo.
+// stand-in accounts (architecture 12.2, pending real OIDC integration).
+// Extracted from vessel/auth rather than duplicated when office/auth
+// needed the identical logic: password hashing is security-sensitive
+// code where two copies risk silently drifting apart, unlike the
+// generic per-binary infrastructure (e.g. each app's own SPA-serving
+// handler) that's deliberately kept separate elsewhere in this repo.
 package authcrypto
 
 import (

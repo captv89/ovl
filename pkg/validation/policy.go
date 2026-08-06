@@ -68,8 +68,8 @@ const AllEvents = "*"
 // policy state that applies to the events listed here, and is hidden
 // everywhere else. That deliberately cannot express "mandatory on Arrival,
 // optional on Noon" — the user chose the simpler authoring model on
-// 2026-07-28 (see PROJECT.md), on the reasoning that `recommended` already
-// covers the situational case without blocking submit. Widening this to a
+// 2026-07-28, on the reasoning that `recommended` already covers the
+// situational case without blocking submit. Widening this to a
 // list of rules per field later is an additive, optional wire field and would
 // not need a configwire.WireVersion bump.
 type FieldEvents map[string][]string

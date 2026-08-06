@@ -9,7 +9,7 @@ package domain
 // trail and UI don't lose it) rather than being separate overlay flags —
 // the architecture doc's own lifecycle diagram is not fully explicit on
 // this point, so this is a documented default, not a literal spec
-// transcription (see PROJECT.md's decisions log).
+// transcription.
 type State string
 
 const (

@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 
 // Package sync is ovl-vessel's client side of the office sync protocol
-// (architecture 11). Built incrementally across Phase 4 (see PROJECT.md's
-// 2026-07-11 decisions log for the sequencing); this file covers only
-// the enrollment handshake (architecture 11.2: exchange a one-time code
-// for a long-lived credential) — the ConnectRPC SyncService client
+// (architecture 11). Built incrementally across Phase 4; this file covers
+// only the enrollment handshake (architecture 11.2: exchange a one-time
+// code for a long-lived credential) — the ConnectRPC SyncService client
 // itself is a later step in the same phase.
 package sync
 

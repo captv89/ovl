@@ -21,7 +21,7 @@ import (
 // compliance-style download offered alongside GraphQL, behind the same
 // API-key gate (codebase audit 2026-07-22 §5: pkg/csvout existed and was
 // golden-file-tested since Phase 1 but had no serving surface, so the spec
-// and PROJECT.md overstated what shipped). csvout.Generate produces one
+// overstated what shipped). csvout.Generate produces one
 // file per schema (a single schema's columns), so the schema query
 // parameter is required; the remaining filters mirror the GraphQL Reports
 // query, and the API key's own group scope always wins over a groupId

@@ -107,8 +107,7 @@ type SchemaVersionCursorItem struct {
 
 // ListSchemaVersionsSince returns every schema version published after
 // sinceCursor, cursor ascending — the global stream PullInbox sends
-// (Phase 4 decision, PROJECT.md 2026-07-11's decisions log: schema
-// versions are not scoped per vessel/bundle).
+// (Phase 4 decision: schema versions are not scoped per vessel/bundle).
 func (s *Store) ListSchemaVersionsSince(ctx context.Context, sinceCursor int64) ([]SchemaVersionCursorItem, error) {
 	rows, err := s.db.QueryContext(ctx, schemaVersionColumns+`, cursor
 		FROM schema_versions WHERE cursor > $1 ORDER BY cursor ASC

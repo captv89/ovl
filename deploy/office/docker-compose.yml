@@ -17,10 +17,9 @@ name: ovl-office
 #      the full walkthrough, including a reverse-proxy example.
 #
 # An OIDC provider (Keycloak or Authentik) is deferred until the
-# office-roles/auth checklist item; see PROJECT.md's Phase 3 decisions
-# log for why. Office staff login stays on local accounts for now; the
-# API-key-gated GraphQL/CSV data API (Phase 6) is a separate,
-# already-built auth surface, not OIDC.
+# office-roles/auth checklist item. Office staff login stays on local
+# accounts for now; the API-key-gated GraphQL/CSV data API (Phase 6) is
+# a separate, already-built auth surface, not OIDC.
 services:
   postgres:
     image: postgres:16

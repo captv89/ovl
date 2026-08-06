@@ -8,8 +8,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     // vessel/main.go embeds this directory directly via go:embed, which
-    // cannot reference a parent directory (../web/vessel/dist) — see
-    // PROJECT.md's decisions log.
+    // cannot reference a parent directory (../web/vessel/dist).
     outDir: '../../vessel/webdist',
     emptyOutDir: true,
   },

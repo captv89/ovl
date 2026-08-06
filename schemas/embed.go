@@ -6,8 +6,7 @@
 // physically inside schemas/ itself: go:embed patterns cannot reference
 // a parent directory, so neither pkg/schema nor vessel/ could embed
 // this tree directly (same constraint that put vessel/webdist next to
-// vessel/main.go instead of embedding web/vessel/dist — see PROJECT.md's
-// decisions log).
+// vessel/main.go instead of embedding web/vessel/dist).
 package schemas
 
 import "embed"

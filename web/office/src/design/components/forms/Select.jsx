@@ -9,11 +9,10 @@ import { Tooltip } from "../feedback/Tooltip.jsx";
  * error/warning/disabled/supportingText parity and keyboard operability
  * (ArrowUp/Down, Home/End, Enter/Space, Escape, close-on-outside-click) —
  * previously the only field primitive missing all of that, both here and
- * on the vessel side (see the vessel repo's PROJECT.md "Vessel UI rework"
- * section for the full history; this is the office-side forward-port of
- * that same fix, keeping office's own M3 visual shell rather than
- * adopting vessel's wireframe-driven anatomy, which has no office
- * equivalent spec yet).
+ * on the vessel side. This is the office-side forward-port of that same
+ * fix, keeping office's own M3 visual shell rather than adopting
+ * vessel's wireframe-driven anatomy, which has no office equivalent spec
+ * yet.
  *
  * `policyOutline` — see TextField's own doc comment: drawn as this field's
  * own border rather than a second overlay frame.

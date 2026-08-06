@@ -22,8 +22,7 @@ import (
 // regulatory profile/cadence/rule-severity assignment across all scopes.
 // DefaultRoleNames is always nil: architecture 9.2's default-role-set
 // field is inert data only until Phase 4 sync exists to deliver a
-// bundle at all (see PROJECT.md's 2026-07-07 decisions log) — nothing
-// in this office UI ever sets it.
+// bundle at all — nothing in this office UI ever sets it.
 func (s *Server) composeCurrentBundle(ctx context.Context) (*configbundle.ConfigBundle, error) {
 	names, err := s.st.ListSchemaNames(ctx)
 	if err != nil {

@@ -14,11 +14,11 @@ import (
 
 // runResetAdminPassword is `ovl-office reset-admin-password`: the
 // office-admin-lockout recovery path (2026-07-21, alongside architecture
-// 9.3/12.4's remote vessel-user administration — see that feature's own
-// PROJECT.md entry for why office and vessel need two different answers
-// to "the person who'd normally fix this is themselves locked out").
-// Office has no one above it the way a vessel has office — if every
-// Admin account is locked out, there is no in-app recovery path, only
+// 9.3/12.4's remote vessel-user administration — office and vessel need
+// two different answers to "the person who'd normally fix this is
+// themselves locked out"). Office has no one above it the way a vessel
+// has office — if every Admin account is locked out, there is no
+// in-app recovery path, only
 // whoever already has direct access to the database this binary talks
 // to. This subcommand doesn't grant that access; it requires it
 // (-db-dsn, the same connection string OVL_OFFICE_DB_DSN/-db-dsn already

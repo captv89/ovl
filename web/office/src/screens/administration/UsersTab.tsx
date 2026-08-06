@@ -63,8 +63,7 @@ type View = { kind: "list" } | { kind: "create" } | { kind: "detail"; userId: st
 // roles, active state), provision new ones, reassign roles, deactivate/
 // reactivate, and reset a forgotten password (fulfills Login.tsx's own
 // existing "Ask an Admin to reset it" copy). Local accounts only — real
-// OIDC (Authentik) is separate, larger infra work tracked elsewhere
-// (see PROJECT.md's Office UI rework plan).
+// OIDC (Authentik) is separate, larger infra work tracked elsewhere.
 export function UsersTab() {
   const [view, setView] = useState<View>({ kind: "list" });
   const [users, setUsers] = useState<UserView[] | null>(null);

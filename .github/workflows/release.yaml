@@ -3,9 +3,7 @@
 # builds and pushes the multi-arch ovl-office image to ghcr.io, and
 # cosign-signs the checksum file (keyless, via this workflow's own OIDC
 # token — see .goreleaser.yaml's `signs` block for why keyless over a
-# long-lived key). Inert until this repo has a remote and a tag is
-# actually pushed, same as ci.yaml before it — see PROJECT.md's Phase 1
-# decisions log.
+# long-lived key).
 name: Release
 
 on:

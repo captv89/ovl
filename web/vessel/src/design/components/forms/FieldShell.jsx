@@ -8,8 +8,7 @@ import { InfoTip } from "./InfoTip.jsx";
  * border-color/style/width priority: error > focus > warning > policy
  * outline > default. Previously duplicated with drift across TextField,
  * Textarea, DateTimeField, PositionField, Select (which had none at all),
- * and FieldRow's own inline boolean-row copy — see PROJECT.md's "Vessel
- * UI rework" section for the full history. `policyOutline` is
+ * and FieldRow's own inline boolean-row copy. `policyOutline` is
  * "mandatory" | "ghgRelevant" | "both" | null; only pure "ghgRelevant"
  * draws a dashed border, "both" stays solid (matches the field-policy
  * legend). A bare focus with nothing else to flag stays hairline-width —
@@ -36,8 +35,7 @@ export function fieldFrameStyle({ error = false, focused = false, warning = fals
  * FieldShell — shared label row + input frame + supporting-text line for
  * every field primitive. Anatomy matches the OVL Vessel Wireframes design
  * spec (label-above, 38px input frame, always-visible ⓘ info icon) rather
- * than Material 3's floating-label pattern — see PROJECT.md's "Vessel UI
- * rework" section for why the floating-label pattern was dropped.
+ * than Material 3's floating-label pattern, which was dropped.
  *
  * `frame` is the object `fieldFrameStyle` returns — FieldShell doesn't
  * compute it itself so a non-standard trigger (e.g. Select's clickable

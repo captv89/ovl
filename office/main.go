@@ -2,8 +2,7 @@
 
 // Command ovl-office is the office API server (architecture section 12):
 // Postgres store, embedded React SPA. At this skeleton stage it has no
-// OIDC auth yet — that's a deliberately deferred, later checklist item;
-// see PROJECT.md.
+// OIDC auth yet — that's a deliberately deferred, later checklist item.
 package main
 
 import (

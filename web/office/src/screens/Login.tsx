@@ -9,9 +9,9 @@ import { api, type UserView } from "../api/client";
 
 // Design handoff Part B: real OIDC (Keycloak/Authentik, broker-federated
 // to whichever IdP a deployment's own company uses — Microsoft Entra ID,
-// Okta, etc.) is the eventual real thing, deliberately deferred (see
-// PROJECT.md's Phase 3 decisions log) — this is the local-account
-// stand-in, same shape as vessel's own A2 login screen. The "Veracity
+// Okta, etc.) is the eventual real thing, deliberately deferred — this
+// is the local-account stand-in, same shape as vessel's own A2 login
+// screen. The "Veracity
 // as an SSO source" idea this comment used to reference is dead — DNV
 // rejected API access entirely, and OIDC was never actually blocked on
 // that in the first place.

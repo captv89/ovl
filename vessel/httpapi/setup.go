@@ -202,8 +202,7 @@ type setupMasterRequest struct {
 // Master account's real password here directly. Because they are
 // choosing it themselves, live, MustChangePassword is left false —
 // unlike auth.NewUser's normal default of true, which assumes a
-// temporary password handed to someone else (see PROJECT.md's decisions
-// log for the reasoning).
+// temporary password handed to someone else.
 func (s *Server) handleSetupMaster(w http.ResponseWriter, r *http.Request) {
 	st, ok := s.requireStore(w)
 	if !ok {

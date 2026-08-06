@@ -14,9 +14,8 @@
 -- place — see vessel/httpapi/reports.go's handleDeleteReport for why
 -- this is a purely vessel-local operation).
 --
--- No UI reads this table yet — PROJECT.md's backlog carries "admin UI
--- to view the deleted-report log" as a follow-up, not part of this
--- change.
+-- No UI reads this table yet — an admin UI to view the deleted-report
+-- log is a follow-up, not part of this change.
 CREATE TABLE deleted_report_log (
     id          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     report_id   TEXT    NOT NULL,

@@ -33,7 +33,7 @@ func (s *Server) requireConfigManager(w http.ResponseWriter, r *http.Request) bo
 // list: "version string, source, published date, in-use-by count." The
 // in-use-by count is omitted — architecture notes it's genuinely blocked
 // on Phase 4 sync existing (no report data anywhere to count against
-// yet), same deferral as PROJECT.md's 2026-07-07 schema-registry entry.
+// yet).
 type schemaVersionSummaryView struct {
 	SchemaName  string    `json:"schemaName"`
 	Version     string    `json:"version"`

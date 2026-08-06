@@ -7,9 +7,9 @@ import { AlertBanner } from "../design/components/feedback/AlertBanner.jsx";
 
 const MIN_LENGTH = 8;
 
-// Office has no OIDC provider wired up yet (a deliberate deferral, see
-// PROJECT.md's Phase 3 decisions log — never actually blocked on
-// Veracity, which is unrelated and now dead anyway) and no
+// Office has no OIDC provider wired up yet (a deliberate deferral,
+// never actually blocked on Veracity, which is unrelated and now dead
+// anyway) and no
 // enrollment-issued credential either — someone has to create the very
 // first local Admin account directly, the same role first-run problem
 // vessel/httpapi's handleSetupMaster solves on that side. Shown only

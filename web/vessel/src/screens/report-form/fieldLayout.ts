@@ -153,8 +153,8 @@ function mergeByLabelPrefix(singletons: SchemaField[]): FieldGroup[] {
 
 // Clusters consecutive fields (in the schema's own curated order) into
 // named groups, in two passes. No per-field category data survived OVD
-// curation (see PROJECT.md's schema-curation decisions log — only name/
-// label/type/section were kept), so both passes are mechanical,
+// curation (only name/label/type/section were kept), so both passes are
+// mechanical,
 // schema-agnostic stand-ins rather than an editorial grouping — still a
 // large legibility win over one flat list for sections with 40-150
 // fields. Runs shorter than MIN_GROUP_SIZE render without a heading (a

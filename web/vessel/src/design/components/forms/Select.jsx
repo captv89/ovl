@@ -7,8 +7,8 @@ import { FieldShell, fieldFrameStyle } from "./FieldShell.jsx";
 /**
  * Select — label-above dropdown on FieldShell. Previously a bare
  * `<div onClick>` with no error/warning/disabled states and no keyboard
- * support at all — the only field primitive missing that parity (see
- * PROJECT.md's "Vessel UI rework" section). Rebuilt as a real listbox
+ * support at all — the only field primitive missing that parity.
+ * Rebuilt as a real listbox
  * button: `role="listbox"`/`role="option"`, full keyboard operation
  * (ArrowUp/Down move the highlight and open the menu if closed,
  * Home/End jump to the ends, Enter/Space selects, Escape closes),

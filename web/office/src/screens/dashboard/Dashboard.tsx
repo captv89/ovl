@@ -46,9 +46,8 @@ export function Dashboard({
       .then((d) => {
         // Defensive, not just decorative: the backend now always sends
         // real arrays, but a client shouldn't crash the whole screen if
-        // that ever regresses — see PROJECT.md's Office UI rework, Phase
-        // O7, for the live crash this exact gap caused before the
-        // backend fix landed.
+        // that ever regresses — this exact gap caused a live crash
+        // before the backend fix landed.
         if (!cancelled)
           setData({
             ...d,

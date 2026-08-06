@@ -33,10 +33,9 @@ type setupAdminRequest struct {
 
 // handleSetupAdmin creates office's first local account, an Admin — there
 // is no OIDC-provisioned or enrollment-issued user yet (architecture
-// 12.2's OIDC integration is still blocked on a DNV-issued client, see
-// PROJECT.md's Phase 3 checklist), so like vessel/httpapi's
-// handleSetupMaster, the very first account has to be created by
-// whoever stands up the office instance, choosing their own password
+// 12.2's OIDC integration is still blocked on a DNV-issued client), so
+// like vessel/httpapi's handleSetupMaster, the very first account has
+// to be created by whoever stands up the office instance, choosing their own password
 // directly. Rejected once any user already exists — this is a one-time
 // bootstrap step, not a general "create user" endpoint.
 func (s *Server) handleSetupAdmin(w http.ResponseWriter, r *http.Request) {

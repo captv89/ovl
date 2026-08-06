@@ -22,10 +22,9 @@ const (
 	EventRestoreApplied    EventType = "restore_applied"
 	// EventFindingAcknowledged is not in architecture 14's original
 	// vocabulary — added per the vessel UI rework's explicit requirement
-	// that warning acknowledgements be audit-logged and synced to
-	// office, not just client-local UI state (see PROJECT.md's "Vessel
-	// UI rework" section, Phase 3). Detail carries "ruleId", "field"
-	// (may be ""), "message", and "acknowledged" (bool) — the same
+	// (Phase 3) that warning acknowledgements be audit-logged and synced
+	// to office, not just client-local UI state. Detail carries "ruleId",
+	// "field" (may be ""), "message", and "acknowledged" (bool) — the same
 	// structured-Detail pattern EventSectionSaved already uses. Toggling
 	// acknowledge/un-acknowledge is allowed; each flip is its own
 	// append-only event, not an update to a prior one.
