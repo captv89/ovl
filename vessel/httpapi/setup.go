@@ -17,17 +17,19 @@ import (
 )
 
 // validDataDir rejects the pre-Master setup wizard's operator-chosen
-// dataDir (CodeQL go/path-injection #7) if it isn't a clean absolute path,
-// returning the cleaned form for use. The wizard's whole point is letting
-// the operator point at any directory on their machine, so there's no
-// fixed safe root to containment-check against — the barrier here is
-// requiring the path be absolute, which closes off relative payloads
-// (e.g. "../../etc") that would otherwise resolve against the server
-// process's working directory rather than what the operator intended.
-// filepath.Clean, applied first, already collapses any ".." within an
-// absolute path to the equivalent literal path, so there's nothing
-// unsafe left to separately check for once IsAbs holds.
+// dataDir (CodeQL go/path-injection #7) unless it's an absolute path with
+// no ".." component, returning the cleaned form for use. The wizard's
+// whole point is letting the operator point at any directory on their
+// machine, so there's no fixed safe root to containment-check against —
+// the barrier is the explicit ".." rejection plus requiring absolute,
+// matching the CWE-22 guidance CodeQL's rule help itself cites (reject
+// on any ".." component; don't rely on filepath.Clean alone, since a
+// sanitizer that silently rewrites a traversal payload into a valid
+// path is exactly what the query flags as insufficient).
 func validDataDir(path string) (string, bool) {
+	if strings.Contains(path, "..") {
+		return "", false
+	}
 	cleaned := filepath.Clean(path)
 	if !filepath.IsAbs(cleaned) {
 		return "", false
@@ -136,7 +138,7 @@ func (s *Server) handleSetupMode(w http.ResponseWriter, r *http.Request) {
 	}
 	cleanDataDir, ok := validDataDir(req.DataDir)
 	if !ok {
-		httpjson.WriteError(w, http.StatusBadRequest, "dataDir must be an absolute path")
+		httpjson.WriteError(w, http.StatusBadRequest, "dataDir must be an absolute path with no \"..\" components")
 		return
 	}
 	req.DataDir = cleanDataDir

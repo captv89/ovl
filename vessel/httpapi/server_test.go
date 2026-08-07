@@ -204,6 +204,7 @@ func TestHandleSetupMode_RejectsUnsafeDataDir(t *testing.T) {
 	for _, dataDir := range []string{
 		"relative/dir",
 		"../escape",
+		t.TempDir() + "/../escape",
 	} {
 		rec := c.do(http.MethodPost, "/api/setup/mode", setupModeRequest{Mode: bootstrap.ModeStandalone, DataDir: dataDir})
 		if rec.Code != http.StatusBadRequest {
