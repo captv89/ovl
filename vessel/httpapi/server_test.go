@@ -198,6 +198,20 @@ func TestHandleSetupMode_RejectsInvalidMode(t *testing.T) {
 	}
 }
 
+func TestHandleSetupMode_RejectsUnsafeDataDir(t *testing.T) {
+	s := newTestServer(t)
+	c := newTestClient(t, s)
+	for _, dataDir := range []string{
+		"relative/dir",
+		"../escape",
+	} {
+		rec := c.do(http.MethodPost, "/api/setup/mode", setupModeRequest{Mode: bootstrap.ModeStandalone, DataDir: dataDir})
+		if rec.Code != http.StatusBadRequest {
+			t.Errorf("dataDir %q: status = %d, want %d", dataDir, rec.Code, http.StatusBadRequest)
+		}
+	}
+}
+
 func TestHandleSetupEnrollment_RequiresModeFirst(t *testing.T) {
 	s := newTestServer(t)
 	c := newTestClient(t, s)

@@ -6,6 +6,7 @@ import (
 	"context"
 	"errors"
 	"net/http"
+	"path/filepath"
 	"strings"
 
 	"github.com/captv89/ovl/internal/httpjson"
@@ -14,6 +15,25 @@ import (
 	"github.com/captv89/ovl/vessel/store"
 	ovlsync "github.com/captv89/ovl/vessel/sync"
 )
+
+// validDataDir rejects the pre-Master setup wizard's operator-chosen
+// dataDir (CodeQL go/path-injection #7) if it isn't a clean absolute path,
+// returning the cleaned form for use. The wizard's whole point is letting
+// the operator point at any directory on their machine, so there's no
+// fixed safe root to containment-check against — the barrier here is
+// requiring the path be absolute, which closes off relative payloads
+// (e.g. "../../etc") that would otherwise resolve against the server
+// process's working directory rather than what the operator intended.
+// filepath.Clean, applied first, already collapses any ".." within an
+// absolute path to the equivalent literal path, so there's nothing
+// unsafe left to separately check for once IsAbs holds.
+func validDataDir(path string) (string, bool) {
+	cleaned := filepath.Clean(path)
+	if !filepath.IsAbs(cleaned) {
+		return "", false
+	}
+	return cleaned, true
+}
 
 // setupStatusResponse is the shape the wizard polls on load to decide
 // which step to show.
@@ -114,6 +134,12 @@ func (s *Server) handleSetupMode(w http.ResponseWriter, r *http.Request) {
 		httpjson.WriteError(w, http.StatusBadRequest, "dataDir is required")
 		return
 	}
+	cleanDataDir, ok := validDataDir(req.DataDir)
+	if !ok {
+		httpjson.WriteError(w, http.StatusBadRequest, "dataDir must be an absolute path")
+		return
+	}
+	req.DataDir = cleanDataDir
 
 	st, err := store.Open(req.DataDir)
 	if err != nil {
