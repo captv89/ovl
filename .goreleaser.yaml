@@ -96,3 +96,18 @@ release:
     owner: captv89
     name: ovl
   draft: true
+  # dockers_v2 pushes the ovl-office image but doesn't add anything to
+  # the release notes about it (unlike the binary archives, which are
+  # auto-listed as attached assets) — without this, the container image
+  # is invisible from the GitHub release page.
+  footer: |
+    ## Container image
+
+    `ovl-office` is also published as a multi-arch (linux/amd64, linux/arm64) container image:
+
+    ```
+    ghcr.io/captv89/ovl-office:{{ .Version }}
+    ghcr.io/captv89/ovl-office:latest
+    ```
+
+    See [`deploy/office/`](https://github.com/captv89/ovl/tree/main/deploy/office) for a Docker Compose stack to run it.
