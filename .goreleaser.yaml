@@ -72,6 +72,24 @@ dockers_v2:
     platforms:
       - linux/amd64
       - linux/arm64
+    # dockers_v2 has no "context: ." option (unlike the legacy dockers/
+    # docker_manifests pair) — its build context is only the Dockerfile's
+    # own directory plus whatever extra_files lists, copied in relative
+    # to the repo root. office/Dockerfile's COPY . . needs the whole Go
+    # module (go.mod/go.sum + every package office imports, including
+    # internal/ and schemas/) and the web/office npm workspace, matching
+    # that Dockerfile's own "build context is the repo root" doc comment.
+    extra_files:
+      - go.mod
+      - go.sum
+      - package.json
+      - package-lock.json
+      - cmd
+      - internal
+      - office
+      - pkg
+      - schemas
+      - web
 
 release:
   github:
