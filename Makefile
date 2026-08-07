@@ -53,15 +53,17 @@ validate-sample:
 ## Web (npm workspaces)
 
 web-install:
-	npm install
+	npm ci
 
 web-build: web-build-vessel web-build-office
 
 web-build-vessel:
 	npm run build --workspace=web/vessel
+	touch vessel/webdist/.gitkeep
 
 web-build-office:
 	npm run build --workspace=web/office
+	touch office/webdist/.gitkeep
 
 web-dev-vessel:
 	npm run dev --workspace=web/vessel
