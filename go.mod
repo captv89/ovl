@@ -11,7 +11,7 @@ require (
 	github.com/jackc/pgx/v5 v5.10.0
 	github.com/klauspost/compress v1.19.1
 	github.com/pressly/goose/v3 v3.27.3
-	github.com/santhosh-tekuri/jsonschema/v6 v6.0.2
+	github.com/santhosh-tekuri/jsonschema/v6 v6.0.3
 	github.com/vektah/gqlparser/v2 v2.5.36
 	google.golang.org/protobuf v1.36.11
 	modernc.org/sqlite v1.55.0
