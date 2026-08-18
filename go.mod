@@ -13,7 +13,7 @@ require (
 	github.com/pressly/goose/v3 v3.27.3
 	github.com/santhosh-tekuri/jsonschema/v6 v6.0.2
 	github.com/vektah/gqlparser/v2 v2.5.36
-	google.golang.org/protobuf v1.36.11
+	google.golang.org/protobuf v1.36.12
 	modernc.org/sqlite v1.55.0
 )
 
