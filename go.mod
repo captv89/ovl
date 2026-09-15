@@ -3,7 +3,7 @@ module github.com/captv89/ovl
 go 1.26.3
 
 require (
-	connectrpc.com/connect v1.20.0
+	connectrpc.com/connect v1.21.0
 	filippo.io/age v1.3.1
 	github.com/99designs/gqlgen v0.17.94
 	github.com/alexedwards/argon2id v1.0.0
